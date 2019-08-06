@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Algorithm - Port Check</title>
+</head>
+<body>
+  <input id="input_port" />
+  <button onclick="onBtnClick()">Check</button>
+  <p id="label_result"></p>
+  <b>规则</b>
+  <ul>
+    <li>输入框输入端口段，格式如:80-82,90-99,100-101,110。可以输入单个端口，也可以输入端口段，用英文逗号隔开。</li>
+    <li>端口段可以不按大小顺序输入，但是端口段时，前一个端口必须小于第二个端口，输入20-10为非法。</li>
+    <li>最多支持输入8段端口段。</li>
+  </ul>
+  <script>
+    function onBtnClick () {
+      var input = document.getElementById('input_port').value
+      var label = document.getElementById('label_result')
+      label.innerText = validatePortNumberList(input)
+    }
+    function validatePortNumberList (val) {
+      function isNumberValid (num) {
+        return reg1.test(String(num)) && num < MAX && num > MIN
+      }
+      if (val.length > 0) {
+        var aPortRangeObj = []
+        var aValArr = val.split(',')
+        var reg1 = /^\s*\d+\s*$/, reg2 = /^\s*\d+\s*-\s*\d+\s*$/
+        var MAX = 65535, MIN = 0
+        var isValid = aValArr.every( (item, index) => {
+          var bCurItemIsValid = true
+          if (isNumberValid(item)) {
+            aPortRangeObj.push({
+              minValue: parseInt(item),
+              maxValue: parseInt(item)
+            })
+          } else if (reg2.test(item)) {
+            var num1 = item.split('-')[0], num2 = item.split('-')[1]
+            if (isNumberValid(num1) && isNumberValid(num2) && parseInt(num1) <= parseInt(num2)) {
+              aPortRangeObj.push({
+                minValue: parseInt(num1),
+                maxValue: parseInt(num2)
+              })
+            } else {
+              return false
+            }
+          } else {
+            return false
+          }
+          return true
+        })
+        if (!isValid) {
+          return `Input invalid`
+        }
+        // merge
+        var index1 = 0
+        while(index1 < aPortRangeObj.length) {
+          var curNumList = aPortRangeObj[index1], bCanMerge = false
+          for (var index2 = index1 + 1; index2 < aPortRangeObj.length; index2++) {
+            var compareNumList =aPortRangeObj[index2]
+            if (curNumList.maxValue + 1 < compareNumList.minValue || curNumList.minValue - 1 > compareNumList.maxValue) {
+              // can not merge
+              continue
+            } else {
+              bCanMerge = true
+              compareNumList.minValue = Math.min(compareNumList.minValue, curNumList.minValue)
+              compareNumList.maxValue = Math.max(compareNumList.maxValue, curNumList.maxValue)
+              aPortRangeObj.splice(index1, 1)
+              break
+            }
+          }
+          if (bCanMerge) {
+            continue
+          } else {
+            index1++
+          }
+        }
+        if (aPortRangeObj.length > 8) {
+          return 'max range 8'
+        } else {
+          aPortRangeObj = aPortRangeObj.sort( (obj1, obj2) => {
+            var num1 = parseInt(obj1.minValue), num2 = parseInt(obj2.minValue)
+            return (num1 - num2)
+          })
+          return aPortRangeObj.map(item => item.minValue !== item.maxValue ? `${item.minValue}-${item.maxValue}` : String(item.minValue)).join(',')
+        }
+      }
+    }
+  </script>
+</body>
+</html>
