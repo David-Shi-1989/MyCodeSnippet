@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Date - format</title>
+</head>
+<body>
+  <input id="input_format" value="yyyy/MM/dd hh:mm:ss">
+  <button onclick="onOKClick()">Update</button>
+  <p id="label_result"></p>
+</body>
+<script>
+Date.prototype.format = function (formatStr) {
+  var o = {
+    'M+': this.getMonth() + 1,
+    'd+': this.getDate(),
+    'h+': this.getHours(),
+    'H+': this.getHours(),
+    'm+': this.getMinutes(),
+    's+': this.getSeconds(),
+    'q+': Math.floor((this.getMonth() + 3) / 3),
+    'S': this.getMilliseconds()
+  }
+  if (/(y+)/.test(formatStr)) {
+    formatStr = formatStr.replace(RegExp.$1, (String(this.getFullYear()).substr(4 - RegExp.$1.length)))
+  }
+  for (var k in o) {
+    if (new RegExp(`(${k})`).test(formatStr)) {
+      formatStr = formatStr.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ('00' + o[k]).substr(String(o[k]).length))
+    }
+  }
+  return formatStr
+}
+function onOKClick () {
+  let formatStr = document.getElementById('input_format').value
+  document.getElementById('label_result').innerText = (new Date()).format(formatStr)
+}
+</script>
+</html>
