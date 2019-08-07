@@ -1,0 +1,22 @@
+{
+  "name": "mycodesnippet",
+  "version": "1.0.0",
+  "description": "记录平时开发中的有用代码。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/David-Shi-1989/MyCodeSnippet.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/David-Shi-1989/MyCodeSnippet/issues"
+  },
+  "homepage": "https://github.com/David-Shi-1989/MyCodeSnippet#readme",
+  "dependencies": {
+    "font-awesome": "^4.7.0"
+  }
+}

@@ -4,11 +4,93 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../../../../node_modules/font-awesome/css/font-awesome.min.css">
   <title>Vue - 源码分析 - 02数据双向绑定</title>
   <style>
     * {margin: 0;padding: 0;}
     body {
       padding: 10px 5px;
+    }
+    dl > dt {
+      display: inline-block;
+    }
+    dl > dd {
+      display: inline-block;
+    }
+    .fa-quote-left {
+      margin-right: 30px;
+    }
+    .fa-quote-right {
+      margin-left: 30px;
+    }
+    #market {
+      padding: 10px;
+      border:1px solid #777;
+      float: left;
+    }
+    #market h4 {
+      text-align: center;
+      margin: 0 auto 10px auto;
+    }
+    #goods_info {
+      background-color: #f3f3f3;
+      padding: 10px 5px;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    #goods_info dt {
+      width: 30%;
+      color: #999;
+    }
+    #goods_info dd {
+      width: 50%;
+    }
+    #goods_info dd.price {
+      color: #e4393c;
+    }
+    #observer {
+      float: left;
+      width: 200px;
+      height: 200px;
+      background-color: lemonchiffon;
+      box-sizing: border-box;
+      padding: 10px;
+      margin: 40px 0 0 100px;
+    }
+    #observer h4 {
+      text-align: center;
+    }
+    #observer ul {
+      list-style: none;
+    }
+    #observer ul > li {
+      display: inline-block;
+    }
+    #observer ul img {
+      width: 30px;
+      border-radius: 50%;
+      border:1px solid #e2e2e2;
+    }
+    #user {
+      width: 800px;
+      border: 1px solid orange;
+      float: left;
+      padding: 20px 10px;
+      margin-left: 200px;
+    }
+    #user h4 {
+      margin-bottom: 20px;
+    }
+    #user img {
+      width: 60px;
+      border:1px solid #ddd;
+    }
+    #user table tr > td:first-child{
+      font-size: 14px;
+      font-weight: bolder;
+    }
+    #user .fa-quote-left,#user .fa-quote-right {
+      color: #888;
     }
     #logger {
       width: 100%;
@@ -26,13 +108,51 @@
   </style>
 </head>
 <body>
-  <div style="padding: 10px;border:2px solid #777;display:inline-block;">
+  <div id="market">
+    <h4>京东商城</h4>
     <img src="../../../../assets/image/iphone.jpg" style="width:200px;display: block;margin-bottom: 5px;box-sizing: border-box;">
-    <input type="number" id="input_price" value="5499" style="padding: 2px;width:105px;margin-right:5px;"/>
-    <button onclick="setPrice()" style="width:80px;">确认价格</button>
+    <div id="goods_info">
+      <dl>
+        <dt>秒杀价</dt>
+        <dd class="price">5499</dd>
+      </dl>
+    </div>
+    <div id="setting">
+      <input type="number" id="input_price" value="5499" style="padding: 2px;width:105px;margin-right:5px;"/>
+      <button onclick="setPrice()" style="width:75px;">设定价格</button>
+    </div>
   </div>
-  <div id="logger">
+  <div id="observer">
+    <h4>Observer</h4>
+    <p>Dep:</p>
+    <ul>
+      <li><img src="../../../../assets/avatar/style1/avatar_1.png"</li>
+      <li><img src="../../../../assets/avatar/style1/avatar_2.png"</li>
+      <li><img src="../../../../assets/avatar/style1/avatar_5.png"</li>
+    </ul>
   </div>
+  <div id="user">
+    <h4>关注用户(Watcher)：</h4>
+    <table>
+      <tr>
+        <td>David</td>
+        <td><img src="../../../../assets/avatar/style1/avatar_1.png"></td>
+        <td><i class="fa fa-quote-left"></i><span id="user1_saying">123</span><i class="fa fa-quote-right"></i></td>
+      </tr>
+      <tr>
+        <td>Peter</td>
+        <td><img src="../../../../assets/avatar/style1/avatar_2.png"></td>
+        <td><i class="fa fa-quote-left"></i><span id="user2_saying">123</span><i class="fa fa-quote-right"></i></td>
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td><img src="../../../../assets/avatar/style1/avatar_5.png"></td>
+        <td><i class="fa fa-quote-left"></i><span id="user3_saying">123</span><i class="fa fa-quote-right"></i></td>
+      </tr>
+    </table>
+  </div>
+  <div style="clear: both"></div>
+  <div id="logger"></div>
   <script type="text/javascript">
     Date.prototype.format = function (formatStr) {
       var o = {
@@ -127,11 +247,26 @@
 
     var david = new User('David')
     david.watchPrice(iphonePriceObserver, function () {
-      log(`David get notify: ${iphone.price}`)
+      const price = iphone.price
+      const myMinPrice = 5000
+      let text = price >= myMinPrice ? `收到最新价格${price},不过我的最低价格是${myMinPrice}` : `价格已经低于${myMinPrice},可以入手了`
+      setUserSaying('user1_saying', text)
+      log(`David get notify: ${price}`)
     })
     var peter = new User('Peter')
     peter.watchPrice(iphonePriceObserver, function () {
+      const price = iphone.price
+      let text = `收到最新价格${price},不过我是不会买iphone的`
+      setUserSaying('user2_saying', text)
       log(`Peter get notify: ${iphone.price}`)
+    })
+    var mary = new User('Mary')
+    mary.watchPrice(iphonePriceObserver, function () {
+      const price = iphone.price
+      const myMinPrice = 5299
+      let text = price >= myMinPrice ? `收到最新价格${price},不过我的最低价格是${myMinPrice}` : `价格已经低于${myMinPrice},可以入手了`
+      setUserSaying('user3_saying', text)
+      log(`Mary get notify: ${iphone.price}`)
     })
 
     function setPrice () {
@@ -142,6 +277,9 @@
       newItem.innerText = `[${(new Date()).format('yyyy/MM/dd hh:mm:ss')}] ${text}`
       document.getElementById('logger').appendChild(newItem)
       logger.scrollTop=1000000
+    }
+    function setUserSaying (userId, text) {
+      document.getElementById(userId).innerText = text
     }
   </script>
 </body>
