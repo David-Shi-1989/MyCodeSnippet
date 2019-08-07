@@ -13,13 +13,13 @@
     
      对用户输入的端口段检查，合并，排序后输出。更新时间：2019/8/6
 
- - canvas loading (2019/8/6)
+ - canvas loading
  
     `src/loading/canvas-loading-1`
      
     使用canvas画出的loading，带动画效果。更新时间：2019/8/6
 
-- Date.format (2019/8/6)
+- Date.format
     
     `src/method/Date-format`
 
