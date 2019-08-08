@@ -24,3 +24,13 @@
     `src/method/Date-format`
 
      对Date对象原型的补充，增加format方法。更新时间：2019/8/6
+    
+- Vue源码分析
+
+    `src\vue`
+  - 01 new对象
+
+    待更新
+  - 02 数据双向绑定
+    
+    简单的数据双向绑定demo，解释Observer，Watcher和Dep。 更新时间：2019/8/7
