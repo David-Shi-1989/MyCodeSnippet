@@ -34,3 +34,9 @@
   - 02 数据双向绑定
     
     简单的数据双向绑定demo，解释Observer，Watcher和Dep。 更新时间：2019/8/7
+
+- CSS实现照片堆叠
+
+    `src\component\photoStack\index.html`
+
+    更新时间：2019/8/15
