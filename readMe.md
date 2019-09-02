@@ -39,4 +39,10 @@
 
     `src\component\photoStack\index.html`
 
-    更新时间：2019/8/15
+    利用CSS实现照片堆叠效果，适用于相册封面特效。更新时间：2019/8/15
+
+- 弹性布局
+
+    `src\component\flex-box\index.html`
+
+    利用CSS三种方式实现弹性布局，自动占满剩余的宽度。更新时间：2019/9/2
