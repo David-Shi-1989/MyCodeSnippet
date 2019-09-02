@@ -20,10 +20,12 @@
     }
 
     .stackone {
+      --img-width: 480px;
+      --img-height: 320px;
       border: 6px solid #fff;
       float: left;
-      height: 320px;
-      width: 480px;
+      height:var(--img-height);
+      width: var(--img-width);
       margin: 50px;
       position: relative;
 
@@ -34,8 +36,8 @@
 
     .stackone1::before {
       content: "";
-      height: 320px;
-      width: 480px;
+      height:var(--img-height);
+      width: var(--img-width);
       background: #eff4de;
       border: 6px solid #fff;
       -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
@@ -45,8 +47,8 @@
 
     .stackone::before {
       content: "";
-      height: 320px;
-      width: 480px;
+      height:var(--img-height);
+      width: var(--img-width);
       background: #eff4de;
       border: 6px solid #fff;
 
@@ -68,8 +70,8 @@
 
     .stackone::after {
       content: "";
-      height: 320px;
-      width: 480px;
+      height:var(--img-height);
+      width: var(--img-width);
       background: lightblue;
       border: 6px solid #fff;
       position: absolute;
@@ -87,7 +89,7 @@
     }
 
     .stackone img {
-      width: 480px;
+      width: var(--img-width);
     }
   </style>
 </head>
