@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+html {
+  font-size: 20px;
+  @import url('./color.less');
+}
+ul {
+  list-style: none;
+}
+#app {
+  @header-height: 6rem;
+  @sider-bar-width: 18rem;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: @sider-bar-width auto;
+  grid-template-rows: @header-height auto;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  & > header {
+    grid-area: header;
+    width:100%;
+    height: 100%;
+    @import url('./header.less');
+  }
+  & > #side_bar {
+    grid-area: sidebar;
+    width:100%;
+    height: 100%;
+    @import url('./sidebar.less');
+  }
+  & > #main {
+    grid-area: main;
+    width:100%;
+    height: 100%;
+  }
+}
