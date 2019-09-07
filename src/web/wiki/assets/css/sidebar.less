@@ -1,0 +1,59 @@
+& {
+  padding: 2.5rem 0;
+  div.s-logo {
+    width: 100%;
+    text-align: center;
+    & > img {
+      width: 4rem;
+    }
+    & > .s-logo-title1 {
+      font-size: .8rem;
+    }
+    & > .s-logo-title2 {
+      font-size: .6rem;
+      color: var(--color-subcolor);
+    }
+  }
+  div.s-catalog {
+    padding: 1rem .8rem 1rem 4.5rem;
+    box-sizing: border-box;
+    @menu-height: 1.2rem;
+    .menu-link (@font-size:.75rem) {
+      cursor: pointer;
+      font-size: @font-size;
+      padding: .15rem .5rem;
+      border-radius: .1rem;
+      height: @menu-height;
+      line-height: @menu-height;
+      transition: all .3s;
+      &:hover:not(.active) {
+        color: var(--color-primary);
+        text-decoration: underline;
+      }
+      &.active {
+        color: var(--color-dark-primary);
+        background-color: #e9e9e9;
+      }
+      & > .num {
+        font-size: @font-size - 0.5rem;
+        margin-right: .5rem;
+        color: var(--color-subcolor);
+      }
+    }
+    ul.s-c-1 {
+      & > li.s-c-item1 {
+        .s-c-link1 {
+          .menu-link(.75rem);
+        }
+        .s-c-2 {
+          padding-left: 2rem;
+          & > li.s-c-item2 {
+            .s-c-link2 {
+              .menu-link(.65rem)
+            }
+          }
+        }
+      }
+    }
+  }
+}
