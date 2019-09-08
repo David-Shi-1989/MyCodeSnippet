@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" type="text/css" href="./assets/css/style.css"></link>
   <link rel="stylesheet" type="text/css" href="./node_modules/font-awesome/css/font-awesome.min.css"></link>
+  <script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.js"></script>
   <title>安全云项目介绍</title>
 </head>
 <body>
@@ -14,30 +15,40 @@
     </header>
     <div id="side_bar">
       <div class="s-logo">
-        <img src="./assets/image/logo.jpg">
+        <img src="./assets/image/logo.png">
         <p class="s-logo-title1">安全云项目前端规范</p>
         <p class="s-logo-title2">Seccloud Web Rules</p>
       </div>
       <div class="s-catalog">
         <ul class="s-c-1">
           <li class="s-c-item1">
-            <span class="s-c-link1"><span class="num">1</span>简介</span>
+            <span class="s-c-link s-c-link1" data-id="1">
+              <span class="num">1</span>
+              <span>简介</span>
+            </span>
           </li>
           <li class="s-c-item1">
-            <span class="s-c-link1"><span class="num">2</span>技术</span>
-            <i class="fa fa-angle-left"></i>
+            <span class="s-c-link s-c-link1" data-id="2">
+              <span class="num">2</span>
+              <span>技术</span>
+            </span>
+            <i class="fa fa-caret-left"></i>
             <ul class="s-c-2">
-              <li class="s-c-item2"><span class="s-c-link2"><span class="num">2.1</span>Web技术</span></li>
-              <li class="s-c-item2"><span class="s-c-link2"><span class="num">2.2</span>NodeJS技术</span></li>
-              <li class="s-c-item2"><span class="s-c-link2"><span class="num">2.3</span>后端技术</span></li>
+              <li class="s-c-item2"><span class="s-c-link s-c-link2" data-id="2.1"><span class="num">2.1</span>Web技术</span></li>
+              <li class="s-c-item2"><span class="s-c-link s-c-link2" data-id="2.2"><span class="num">2.2</span>NodeJS技术</span></li>
+              <li class="s-c-item2"><span class="s-c-link s-c-link2" data-id="2.3"><span class="num">2.3</span>后端技术</span></li>
             </ul>
           </li>
           <li class="s-c-item1">
-            <span class="s-c-link1 active"><span class="num">3</span>规范</span>
+            <span class="s-c-link s-c-link1"  data-id="3">
+              <span class="num">3</span>
+              <span>规范</span>
+            </span>
+            <i class="fa fa-caret-left"></i>
             <ul class="s-c-2">
-              <li class="s-c-item2"><span class="s-c-link2"><span class="num">3.1</span>html规范</span></li>
-              <li class="s-c-item2"><span class="s-c-link2 active"><span class="num">3.2</span>js规范</span></li>
-              <li class="s-c-item2"><span class="s-c-link2"><span class="num">3.3</span>ts规范</span></li>
+              <li class="s-c-item2"><span class="s-c-link s-c-link2" data-id="3.1"><span class="num">3.1</span>html规范</span></li>
+              <li class="s-c-item2"><span class="s-c-link s-c-link2" data-id="3.2"><span class="num">3.2</span>js规范</span></li>
+              <li class="s-c-item2"><span class="s-c-link s-c-link2" data-id="3.3"><span class="num">3.3</span>ts规范</span></li>
             </ul>
           </li>
         </ul>
@@ -46,4 +57,5 @@
     <div id="main"></div>
   </div>
 </body>
+<script type="text/javascript" src="./assets/js/sidebar.js"></script>
 </html>

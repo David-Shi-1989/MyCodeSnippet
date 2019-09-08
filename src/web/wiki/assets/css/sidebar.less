@@ -1,5 +1,6 @@
 & {
   padding: 2.5rem 0;
+  border-right: .05rem solid #eee;
   div.s-logo {
     width: 100%;
     text-align: center;
@@ -46,12 +47,24 @@
           .menu-link(.75rem);
         }
         .s-c-2 {
+          height: 0;
+          transition: all .3s;
+          overflow: hidden;
           padding-left: 2rem;
           & > li.s-c-item2 {
             .s-c-link2 {
               .menu-link(.65rem)
             }
           }
+        }
+        i.fa-caret-left {
+          display: inline-block;
+          font-size: .6rem;
+          margin-left: 5rem;
+          transition: all .3s;
+        }
+        &.open i.fa-caret-left {
+          transform: rotate(-90deg);
         }
       }
     }
