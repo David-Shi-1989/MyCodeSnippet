@@ -1,4 +1,36 @@
 & {
   box-sizing: border-box;
+  padding: 2rem 1rem;
   background-color: aliceblue;
+  ul.h-menu {
+    @menu-width: 2.5rem;
+    @menu-height: 1.2rem;
+    font-size: .7rem;
+    display: flex;
+    position: relative;
+    & > li {
+      width: @menu-width;
+      height: @menu-height;
+      line-height: @menu-height;
+      text-align: center;
+      cursor: pointer;
+      border-radius: .2rem;
+      &:not(:last-child) {
+        margin-right: .7rem;
+      }
+      &.active {
+        color: #fff;
+        position: relative;
+        z-index: 99;
+      }
+      &.active-bg {
+        background-color: var(--color-primary);
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 90;
+        transition: all .3s;
+      }
+    }
+  }
 }

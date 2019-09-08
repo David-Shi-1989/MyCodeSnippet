@@ -38,7 +38,37 @@ ul {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+  padding: 2rem 1rem;
   background-color: aliceblue;
+}
+#app > header ul.h-menu {
+  font-size: 0.7rem;
+  display: flex;
+  position: relative;
+}
+#app > header ul.h-menu > li {
+  width: 2.5rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.2rem;
+}
+#app > header ul.h-menu > li:not(:last-child) {
+  margin-right: 0.7rem;
+}
+#app > header ul.h-menu > li.active {
+  color: #fff;
+  position: relative;
+  z-index: 99;
+}
+#app > header ul.h-menu > li.active-bg {
+  background-color: var(--color-primary);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 90;
+  transition: all 0.3s;
 }
 #app > #side_bar {
   grid-area: sidebar;
