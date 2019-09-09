@@ -12,7 +12,7 @@
       document.getElementById('app_right').style.height = document.getElementsByTagName('body')[0].clientHeight + 'px'
     },
     initEvent: function () {
-      this.listenScroll()
+      // this.listenScroll()
     },
     listenScroll: function () {
       var wrapEl = document.getElementById('app_right')

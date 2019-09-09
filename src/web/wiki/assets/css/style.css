@@ -178,6 +178,7 @@ ul {
   justify-content: flex-end;
 }
 #app > #app_right > header .h-align-right .h-search {
+  box-sizing: border-box;
   height: 2.4rem;
   line-height: 2.4rem;
   background-color: #e5e5e5;
@@ -233,6 +234,6 @@ ul {
   padding-right: 5rem;
 }
 #app > #app_right > #main .m_content {
-  background-color: #f5f5f5;
+  background-color: #f9f9f9;
   height: 80rem;
 }
