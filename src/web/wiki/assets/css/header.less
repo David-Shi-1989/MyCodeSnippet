@@ -2,6 +2,8 @@
   box-sizing: border-box;
   padding: 4rem 2rem;
   display: flex;
+  background-color: #fff;
+  position: relative;
   @menu-width: 5rem;
   @menu-height: 2.4rem;
   ul.h-menu {
@@ -71,5 +73,8 @@
         line-height: @menu-height;
       }
     }
+  }
+  &.header-fixed {
+    position: fixed;
   }
 }
