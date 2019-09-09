@@ -26,6 +26,7 @@
         var $el = evt.target.tagName.toLowerCase() == 'li' ? $(evt.target) : $(evt.target.parentNode)
         if (!$el.hasClass('active')) {
           $el.addClass('active').siblings('.active').removeClass('active')
+          $el.parent().siblings('button').children('.text').text($el.text())
           console.log('language switch to ' + $el.text())
         }
       })

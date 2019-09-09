@@ -29,7 +29,7 @@ ul {
   height: 100%;
   background-color: #fff;
   display: grid;
-  grid-template-columns: 36rem auto;
+  grid-template-columns: 28rem auto;
 }
 #app > #side_bar {
   width: 100%;
@@ -52,7 +52,7 @@ ul {
   color: var(--color-subcolor);
 }
 #app > #side_bar div.s-catalog {
-  padding: 2rem 1.6rem 2rem 9rem;
+  padding: 2rem 1.6rem 2rem 7rem;
   box-sizing: border-box;
 }
 #app > #side_bar div.s-catalog ul.s-c-1 > li.s-c-item1 .s-c-link1 {
@@ -81,7 +81,7 @@ ul {
   height: 0;
   transition: all 0.3s;
   overflow: hidden;
-  padding-left: 4rem;
+  padding-left: 2rem;
 }
 #app > #side_bar div.s-catalog ul.s-c-1 > li.s-c-item1 .s-c-2 > li.s-c-item2 .s-c-link2 {
   cursor: pointer;
@@ -119,7 +119,7 @@ ul {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  padding-bottom: 1rem;
+  padding-bottom: 3rem;
   box-sizing: border-box;
 }
 #app > #app_right::-webkit-scrollbar {
@@ -217,12 +217,14 @@ ul {
   font-size: 2rem;
   line-height: 2.4rem;
 }
+#app > #app_right > header .h-align-right .dropdown button {
+  width: 8rem;
+}
 #app > #app_right > header.header-fixed {
   position: fixed;
 }
 #app > #app_right > #main {
   width: 100%;
-  height: 100%;
   padding: 0 2rem;
 }
 #app > #app_right > #main .m_title {
