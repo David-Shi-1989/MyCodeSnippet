@@ -15,7 +15,7 @@
         var $el = $(evt.target)
         $('#'+me.def.id+' .h-menu > li.active').removeClass('active')
         $el.addClass('active')
-        var left = ($el.index() * 2.5 + ($el.index() * 0.7))
+        var left = ($el.index() * 5 + ($el.index() * 1.4))
         $('#'+me.def.id+' .h-menu > li.active-bg').css('left', left+'rem')
       })
     }

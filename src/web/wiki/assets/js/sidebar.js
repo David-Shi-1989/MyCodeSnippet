@@ -30,7 +30,7 @@
       function openMenu2List (id1) {
         var menu2Ul = $('#'+me.def.id+' .s-c-link1[data-id="'+id1+'"]').siblings('.s-c-2')
         if (menu2Ul) {
-          menu2Ul.height((menu2Ul.children('li').length * 1.4) + 'rem').parent().addClass('open')
+          menu2Ul.height((menu2Ul.children('li').length * 2.8) + 'rem').parent().addClass('open')
         }
       }
       function closeMenu2List (id1) {
