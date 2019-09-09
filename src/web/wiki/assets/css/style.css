@@ -41,33 +41,6 @@ ul {
   padding: 4rem 2rem;
   display: flex;
 }
-#app > header .h-search {
-  height: 2.4rem;
-  line-height: 2.4rem;
-  background-color: #e5e5e5;
-  border-radius: 0.6rem;
-  padding: 0.3rem 0.8rem;
-}
-#app > header .h-search input {
-  border: none;
-  outline: none;
-  background-color: transparent;
-}
-#app > header .h-search input .clean-style {
-  border: none;
-  outline: none;
-  background-color: transparent;
-}
-#app > header .h-search input:hover,
-#app > header .h-search input:focus {
-  border: none;
-  outline: none;
-  background-color: transparent;
-}
-#app > header .h-search i.fa-search {
-  font-size: 1.4rem;
-  color: #6e6e6e;
-}
 #app > header ul.h-menu {
   font-size: 1.4rem;
   display: flex;
@@ -96,6 +69,49 @@ ul {
   top: 0;
   z-index: 90;
   transition: all 0.3s;
+}
+#app > header .h-align-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+#app > header .h-align-right .h-search {
+  height: 2.4rem;
+  line-height: 2.4rem;
+  background-color: #e5e5e5;
+  border-radius: 0.6rem;
+  margin-right: 3rem;
+  padding-right: 0.8rem;
+}
+#app > header .h-align-right .h-search input {
+  height: 2.4rem;
+  padding: 0.3rem 0.8rem;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+#app > header .h-align-right .h-search input .clean-style {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+#app > header .h-align-right .h-search input:hover,
+#app > header .h-align-right .h-search input:focus {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+#app > header .h-align-right .h-search i.fa-search {
+  font-size: 1.4rem;
+  color: #6e6e6e;
+}
+#app > header .h-align-right .h-user-info {
+  color: var(--color-text-title);
+  margin-right: 3rem;
+}
+#app > header .h-align-right .h-user-info i {
+  font-size: 2rem;
+  line-height: 2.4rem;
 }
 #app > #side_bar {
   grid-area: sidebar;
