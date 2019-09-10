@@ -9,7 +9,7 @@
       this.initEvent()
     },
     initUI: function () {
-      // document.getElementById('app_right').style.height = window.screen.height + 'px'
+      $('#app_right').height($('body').height() + 'px')
     },
     initEvent: function () {
       // this.listenScroll()

@@ -55,7 +55,10 @@ ul {
   padding: 2rem 1.6rem 2rem 7rem;
   box-sizing: border-box;
 }
-#app > #side_bar div.s-catalog ul.s-c-1 > li.s-c-item1 .s-c-link1 {
+#app > #side_bar div.s-catalog ul.s-c-1 > li.s-c-item1 .s-c-link1-wrap {
+  display: flex;
+}
+#app > #side_bar div.s-catalog ul.s-c-1 > li.s-c-item1 .s-c-link1-wrap .s-c-link1 {
   cursor: pointer;
   font-size: 1.5rem;
   padding: 0.3rem 1rem;
@@ -64,18 +67,26 @@ ul {
   line-height: 2.4rem;
   transition: all 0.3s;
 }
-#app > #side_bar div.s-catalog ul.s-c-1 > li.s-c-item1 .s-c-link1:hover:not(.active) {
+#app > #side_bar div.s-catalog ul.s-c-1 > li.s-c-item1 .s-c-link1-wrap .s-c-link1:hover:not(.active) {
   color: var(--color-primary);
   text-decoration: underline;
 }
-#app > #side_bar div.s-catalog ul.s-c-1 > li.s-c-item1 .s-c-link1.active {
+#app > #side_bar div.s-catalog ul.s-c-1 > li.s-c-item1 .s-c-link1-wrap .s-c-link1.active {
   color: var(--color-dark-primary);
   background-color: #e9e9e9;
 }
-#app > #side_bar div.s-catalog ul.s-c-1 > li.s-c-item1 .s-c-link1 > .num {
+#app > #side_bar div.s-catalog ul.s-c-1 > li.s-c-item1 .s-c-link1-wrap .s-c-link1 > .num {
   font-size: 0.5rem;
   margin-right: 1rem;
   color: var(--color-subcolor);
+}
+#app > #side_bar div.s-catalog ul.s-c-1 > li.s-c-item1 .s-c-link1-wrap i.fa-caret-left {
+  display: block;
+  height: 2.4rem;
+  line-height: 2.4rem;
+  font-size: 1.2rem;
+  margin-left: auto;
+  transition: all 0.3s;
 }
 #app > #side_bar div.s-catalog ul.s-c-1 > li.s-c-item1 .s-c-2 {
   height: 0;
@@ -104,12 +115,6 @@ ul {
   font-size: 0.2rem;
   margin-right: 1rem;
   color: var(--color-subcolor);
-}
-#app > #side_bar div.s-catalog ul.s-c-1 > li.s-c-item1 i.fa-caret-left {
-  display: inline-block;
-  font-size: 1.2rem;
-  margin-left: 10rem;
-  transition: all 0.3s;
 }
 #app > #side_bar div.s-catalog ul.s-c-1 > li.s-c-item1.open i.fa-caret-left {
   transform: rotate(-90deg);
@@ -238,4 +243,5 @@ ul {
 #app > #app_right > #main .m_content {
   background-color: #f9f9f9;
   height: 80rem;
+  margin-bottom: 3rem;
 }

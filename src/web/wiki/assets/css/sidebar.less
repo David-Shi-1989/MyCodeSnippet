@@ -43,8 +43,19 @@
     }
     ul.s-c-1 {
       & > li.s-c-item1 {
-        .s-c-link1 {
-          .menu-link(1.5rem);
+        .s-c-link1-wrap {
+          display: flex;
+          .s-c-link1 {
+            .menu-link(1.5rem);
+          }
+          i.fa-caret-left {
+            display: block;
+            height: @menu-height;
+            line-height: @menu-height;
+            font-size: 1.2rem;
+            margin-left: auto;
+            transition: all .3s;
+          }
         }
         .s-c-2 {
           height: 0;
@@ -56,12 +67,6 @@
               .menu-link(1.2rem)
             }
           }
-        }
-        i.fa-caret-left {
-          display: inline-block;
-          font-size: 1.2rem;
-          margin-left: 10rem;
-          transition: all .3s;
         }
         &.open i.fa-caret-left {
           transform: rotate(-90deg);
