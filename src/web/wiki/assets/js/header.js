@@ -4,7 +4,18 @@
       id: 'header'
     },
     init: function () {
+      this.initMenu()
       this.initEvent()
+    },
+    initMenu: function () {
+      var data = {
+        items: [
+          {title: '主页', active: true},
+          {title: '项目'},
+          {title: '人员'}
+        ]
+      }
+      var template = $('#header').prepend($('#tpl_header_menu').template(data))
     },
     initEvent: function () {
       this.bindMenuClick()
@@ -32,5 +43,5 @@
       })
     }
   }
-  header.init()
+  
 })()

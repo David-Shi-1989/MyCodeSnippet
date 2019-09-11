@@ -4,7 +4,36 @@
       id: 'side_bar'
     },
     init: function () {
+      this.initMenu()
       this.initEvent()
+    },
+    initMenu: function () {
+      var data = {
+        items: [
+          {
+            title: '安全云'
+          },
+          {
+            title: '云墙',
+            subs: [
+              { title: 'task1' },
+              { title: 'task2' }
+            ]
+          }
+        ]
+      }
+      function addIndex (arr, _preset) {
+        var preset = _preset || ''
+        for (var i = 0; i < arr.length; i++) {
+          arr[i].index = (preset + (i + 1))
+          if (arr[i].subs && arr[i].subs.length) {
+            addIndex(arr[i].subs, arr[i].index + '.')
+          }
+        }
+        return arr
+      }
+      addIndex(data.items)
+      var template = $('#side_bar .s-catalog').prepend($('#tpl_sidebar_menu').template(data))
     },
     initEvent: function () {
       this.bindMenuClick()
@@ -67,5 +96,5 @@
     onMenuItem1Click () {
     }
   }
-  sideBar.init()
+  
 })()
