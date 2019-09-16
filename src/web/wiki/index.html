@@ -11,6 +11,8 @@
   <script type="text/javascript" src="../../../assets/vendor/handlebars/dist/handlebars.min.js"></script>
   <script type="text/javascript" src="../../../assets/vendor/handlebars/handlebars-jquery.js"></script>
   <script type="text/javascript" src="../../../assets/vendor/bootstrapv3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../../../assets/vendor/md-js/mdjs.min.js"></script>
+  <script type="text/javascript" src="../../../assets/vendor/md-js/mdjs-jquery.js"></script>
   <script type="text/javascript" src="./assets/js/sidebar.js"></script>
   <script type="text/javascript" src="./assets/js/header.js"></script>
   <script type="text/javascript" src="./assets/js/main.js"></script>
@@ -48,6 +50,13 @@
       </li>
       {{/each}}
     </ul>
+  </script>
+  <script id="md_test" type="text/template">
+  ###This is Header3
+   - li1
+   - li2 
+  ## header2
+  `123`
   </script>
   <script>
     $(document).ready(function () {

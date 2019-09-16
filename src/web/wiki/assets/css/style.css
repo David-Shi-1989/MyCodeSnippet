@@ -241,7 +241,7 @@ ul {
   padding-right: 5rem;
 }
 #app > #app_right > #main .m_content {
-  background-color: #f9f9f9;
   height: 80rem;
   margin-bottom: 3rem;
+  padding: 1rem 0;
 }

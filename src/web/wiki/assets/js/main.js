@@ -7,6 +7,7 @@
     init: function () {
       this.initUI()
       this.initEvent()
+      this.renderMainContent()
     },
     initUI: function () {
       $('#app_right').height($('body').height() + 'px')
@@ -33,6 +34,12 @@
         }
       }
       function calScrollProgress () {}
+    },
+    renderMainContent: function () {
+      this.setMainContent($("#md_test").mdjs())
+    },
+    setMainContent: function (html) {
+      $("#main .m_content").html(html)
     }
   }
   
