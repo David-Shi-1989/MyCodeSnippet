@@ -6,12 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "HelloWebpack": "webpack --config ./1_HelloWebpack/webpack.config.js",
-    "Loader": "webpack --config ./2_Loader/webpack.config.js"
+    "Loader": "webpack --config ./2_Loader/webpack.config.js",
+    "Plugin": "webpack --config ./3_Plugin/webpack.config.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^3.2.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "style-loader": "^1.0.0",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.9"
