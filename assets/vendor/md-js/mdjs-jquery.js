@@ -1,6 +1,6 @@
 (function ($) {
   var compiled = {}
-  $.fn.mdjs = function () {
-    return (Mdjs.md2html(this.text()))
+  $.fn.mdjs = function (mdText) {
+    return this.html(Mdjs.md2html(mdText))
   }
 })(jQuery)
