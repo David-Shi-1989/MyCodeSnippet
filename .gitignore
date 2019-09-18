@@ -17,3 +17,6 @@ selenium-debug.log
 *.njsproj
 *.sln
 src/web/wiki/package-lock.json
+package-lock.json
+src/course/webpack/2_Loader/dist/bundle.js
+src/course/webpack/1_HelloWebpack/dist/bundle.js
