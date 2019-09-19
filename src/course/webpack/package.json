@@ -8,7 +8,7 @@
     "HelloWebpack": "webpack --config ./1_HelloWebpack/webpack.config.js",
     "Loader": "webpack --config ./2_Loader/webpack.config.js",
     "Plugin": "webpack --config ./3_Plugin/webpack.config.js",
-    "DevServer": "cd 4_DevServer && webpack-dev-server"
+    "DevServer": "cd 4_DevServer && webpack-dev-server --hot --devtool source-map"
   },
   "author": "",
   "license": "ISC",
