@@ -1,3 +1,4 @@
+import Handlebars from './dist/handlebars'
 (function ($) {
   var compiled = {}
   $.fn.template = function (data) {
