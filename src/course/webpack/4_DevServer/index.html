@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css"/>
+  <title>1.3.5 使用Plugin</title>
+</head>
+<body>
+  <div id="app"></div>
+  <div>
+    <p>报错：DeprecationWarning: Tapable.plugin is deprecated. Use new API on `.hooks` instead</p>
+    <p>解决办法：npm install extract-text-webpack-plugin@next</p>
+    <p>报错：Error: Path variable [contenthash] not implemented in this context: [name]_[contenthash].css</p>
+    <p>解决办法：`[name]_[md5:contenthash:hex:8].css`</p>
+  </div>
+  <!--导入webpack输出的js文件-->
+  <script src="bundle.js"></script>
+</body>
+</html>
