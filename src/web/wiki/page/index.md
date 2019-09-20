@@ -1,4 +1,4 @@
-## Index1 ##
+## Here is Index page load by $.get ##
  - li1
  - li2
 

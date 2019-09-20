@@ -35,17 +35,10 @@ var main = {
     function calScrollProgress () {}
   },
   renderMainContent: function () {
-    var data = '## Index1 ##' + '\n' +
-      '- li1' + '\n' +
-      '- li2' +  '\n' +
-      '`code`' +  '\n' +
-      '```' +  '\n' +
-      'var her = \'123\'' +  '\n' +
-      '```'
-    this.setMainContent(data)
-    // $.get("./page/index.md", function (data, status) {
-    //   this.setMainContent(data)
-    // })
+    var me = this
+    $.get("../page/index.md", function (data, status) {
+      me.setMainContent(data)
+    })
   },
   setMainContent: function (mdContent) {
     $("#main .m_content").mdjs(mdContent)
