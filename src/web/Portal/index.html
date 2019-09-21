@@ -1,12 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/icon/iconfont.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/bootstrap-3.3.6/css/bootstrap.min.css">
+    <script type="text/javascript" src="./assets/js/hao123.js"></script>
+    <script type="text/javascript" src="./assets/jquery.min.js"></script>
+    <script type="text/javascript" src="./assets/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <title>个人门户</title>
+  </head>
+  <body>
+    <header>
+      <p>个人门户导航</p>
+      <div class="tool clr-float">
+        <span>编辑</span>
+        <span>导入</span>
+        <span>导出</span>
+        <!-- <i class="fa fa-upload" title="导出"></i>
+        <i class="fa fa-download" title="导入"></i> -->
+      </div>
+    </header>
+    <div id="main" class="mode-demo">
+      <div class="category-wrap">
+      </div>
+      <div class="add-category" onclick="Modal.onAddCategoryClick()">
+        <i class="icon iconfont icon-xinjian"></i>新建
+      </div>
+    </div>
+    <div id="modal">
+      <input type="hidden" id="modal_hidden_type">
+      <input type="hidden" id="modal_hidden_category_name">
+      <input type="hidden" id="modal_hidden_category_id">
+      <input type="hidden" id="modal_hidden_mode">
+      <input type="hidden" id="modal_hidden_item_id">
+      <div class="form">
+        <div class="head">
+          <span id="modal_title">新建</span>
+          <i class="icon iconfont icon-guanbi" onclick="Modal.closeModal()"></i>
+        </div>
+        <div class="main">
+          <formItem id="modal_title">
+            <label is-must="true">标题</label>
+            <input type="text" placeholder="name"/>
+          </formItem>
+          <formItem id="modal_url">
+            <label is-must="true">Url</label>
+            <input type="text" placeholder="url"/>
+          </formItem>
+          <!-- <formItem id="modal_index">
+            <label is-must="true">顺序</label>
+            <input type="number" placeholder="顺序"/>
+          </formItem> -->
+          <formItem id="modal_description">
+            <label is-must="false" style="line-height:60px;vertical-align:top;">描述</label>
+            <textarea type="text" placeholder="description "></textarea>
+          </formItem>
+        </div>
+        <div class="footer">
+          <button class="btn btn-primary" onclick="Modal.onModalOKClick()">确定</button>
+          <button class="btn btn-default" onclick="Modal.closeModal()">取消</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    // global
+    LOCAL_STORAGE_KEY = 'local_storage_hao123_data'
+
+    $(function () {
+      Storage.data = Storage.getData()
+      UI.renderURLCard()
+    })
+  </script>
 </html>
