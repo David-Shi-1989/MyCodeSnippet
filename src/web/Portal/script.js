@@ -1,4 +1,4 @@
-var Model = {
+export var Model = {
   Category: function (categoryName) {
     var id = (''.randomStr(16))
     return {
@@ -23,7 +23,7 @@ var Model = {
     }
   }
 }
-var UI = {
+export var UI = {
   tpl: {
     category: 
     `<div class="category-item" data-id="_CATEGORY_ID_">
@@ -209,7 +209,7 @@ var UI = {
   }
 }
 // localStorage
-var Storage = {
+export var Storage = {
   KEY_NAME: 'local_storage_hao123_data',
   data: null,
   getData: function () {
@@ -361,7 +361,7 @@ var Storage = {
   }
 }
 // 弹窗
-var Modal = {
+export var Modal = {
   id: {
     modal: 'modal',
     title: 'modal_title',
@@ -486,35 +486,5 @@ var Modal = {
       $('#' + item + ' input').val('')
       $('#' + item + ' textarea').val('')
     })
-  }
-}
-
-Number.prototype.random = function(max, min) {
-  max = (!isNaN(max) ? parseInt(max) : 10)
-  min = (!isNaN(min) ? parseInt(min) : 0)
-  var dis = max - min
-  return (Math.floor(Math.random() * (dis + 1)) + min)
-}
-String.prototype.randomStr = function (length, strArr) {
-  var dict = strArr || 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYS0123456789'
-  var len = length || 5
-  var result = ''
-  for (var i = 0; i < len; i++) {
-    result += dict[(0).random(dict.length-1, 0)]
-  }
-  return result
-}
-String.prototype.replaceAll = function (replacedStr, targetStr) {
-  var str = this.toString()
-  while (str.indexOf(replacedStr) > -1) {
-    str = str.replace(replacedStr, targetStr)
-  }
-  return str
-}
-function deepCopy (val) {
-  if (typeof (val) === 'object') {
-    return JSON.parse(JSON.stringify(val))
-  } else {
-    return val
   }
 }
