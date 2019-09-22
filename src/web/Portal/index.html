@@ -4,13 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/icon/iconfont.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./assets/bootstrap-3.3.6/css/bootstrap.min.css">
-    <script type="text/javascript" src="./assets/js/hao123.js"></script>
-    <script type="text/javascript" src="./assets/jquery.min.js"></script>
-    <script type="text/javascript" src="./assets/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../../../assets/vendor/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../assets/vendor/bootstrapv3.3.7/css/bootstrap.css">
+    <script type="text/javascript" src="./script.js"></script>
+    <script type="text/javascript" src="../../../assets/vendor/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../assets/vendor/bootstrapv3.3.7/js/bootstrap.js"></script>
     <title>个人门户</title>
   </head>
   <body>
@@ -28,7 +27,7 @@
       <div class="category-wrap">
       </div>
       <div class="add-category" onclick="Modal.onAddCategoryClick()">
-        <i class="icon iconfont icon-xinjian"></i>新建
+        <i class="fa fa-plus"></i>新建
       </div>
     </div>
     <div id="modal">
@@ -40,7 +39,7 @@
       <div class="form">
         <div class="head">
           <span id="modal_title">新建</span>
-          <i class="icon iconfont icon-guanbi" onclick="Modal.closeModal()"></i>
+          <i class="fa fa-close" onclick="Modal.closeModal()"></i>
         </div>
         <div class="main">
           <formItem id="modal_title">
