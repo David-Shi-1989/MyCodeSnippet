@@ -1,4 +1,5 @@
 import $ from '../../../assets/vendor/jquery.min.js'
+
 window.$ = $
 window.jQuery = $
 // style
@@ -37,7 +38,7 @@ String.prototype.replaceAll = function (replacedStr, targetStr) {
   }
   return str
 }
-function deepCopy (val) {
+window.deepCopy = function (val) {
   if (typeof (val) === 'object') {
     return JSON.parse(JSON.stringify(val))
   } else {
@@ -45,9 +46,8 @@ function deepCopy (val) {
   }
 }
 
-LOCAL_STORAGE_KEY = 'local_storage_hao123_data'
+
 $(function () {
-  debugger
   Storage.data = Storage.getData()
   UI.renderURLCard()
 })
