@@ -49,5 +49,5 @@ window.deepCopy = function (val) {
 
 $(function () {
   Storage.data = Storage.getData()
-  UI.renderURLCard()
+  UI.init()
 })

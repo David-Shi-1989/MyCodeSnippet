@@ -27,7 +27,7 @@ export var UI = {
   tpl: {
     category: 
     `<div class="category-item" data-id="_CATEGORY_ID_">
-      <p class="category-title"><i class="fa fa-angle-right"></i>_CATEGORY_TITLE_<span class="category-size">_CATEGORY_ITEM_SIZE_</span></p>
+      <p class="category-title"><i class="fa fa-angle-down"></i>_CATEGORY_TITLE_<span class="category-size">_CATEGORY_ITEM_SIZE_</span></p>
       <ul class="card-container">
         _ITEM_HTML_
         <li class="add" onclick="Modal.onAddItemClick('_CATEGORY_ID_')" ondragover="UI.onCardDragover(event)" ondrop="UI.onCardDrop(event)"><i class="fa fa-plus"></i></li>
@@ -49,6 +49,19 @@ export var UI = {
         </ul>
       </div>
     </li>`
+  },
+  init: function () {
+    this.renderURLCard()
+    this.bindEvent()
+  },
+  bindEvent: function () {
+    this.bindAngleClickToCollapse()
+  },
+  bindAngleClickToCollapse: function () {
+    $('.category-title i.fa-angle-down').on('click', function () {
+      var isOpen = $(this).hasClass('rotate--90')
+      $(this).toggleClass('rotate--90').parent().siblings('ul.card-container').height(isOpen ? 'auto' : '0')
+    })
   },
   renderURLCard: function () {
     // clear UI
