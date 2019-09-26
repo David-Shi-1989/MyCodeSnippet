@@ -185,7 +185,7 @@ export var UI = {
           Storage.data[dropItemIndex[0]].children = Storage.data[dropItemIndex[0]].children.concat(tmp)
         }
         Storage.saveData()
-        UI.renderURLCard()
+        UI.init()
       }
     } else {
       console.error('invalid dragDropObj', this.dragDropObj)
@@ -219,6 +219,13 @@ export var UI = {
   },
   onItemDeleteClick: function (categoryId, itemId) {
     Storage.deleteItem(categoryId, itemId)
+  },
+  // config
+  onDisplayModeChange: function () {
+    var DEMO_CLASS = "mode-demo"
+    var EDIT_CLASS = "mode-edit"
+    var isDemo = $("#main").hasClass(EDIT_CLASS)
+    $("#main").removeClass(isDemo ? EDIT_CLASS : DEMO_CLASS).addClass(isDemo ? DEMO_CLASS : EDIT_CLASS)
   }
 }
 // localStorage
@@ -241,7 +248,7 @@ export var Storage = {
           window.localStorage[this.KEY_NAME] = str
         }
         if (isRerenderUI) {
-          UI.renderURLCard()
+          UI.init()
         }
       } catch (e) {
   
@@ -489,7 +496,7 @@ export var Modal = {
     }
     if (isSuccess) {
       this.closeModal()
-      UI.renderURLCard()
+      UI.init()
       this.clearModal()
     }
   },
