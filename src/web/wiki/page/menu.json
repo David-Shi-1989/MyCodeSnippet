@@ -1,10 +1,56 @@
 {
   "menus": [
     {
-      "title": "安全云",
+      "title": "主页",
+      "key": "index",
       "subs": [
-        {"title": "CloudOS3.0融合", "href": "cloudos.md"},
-        {"title": "电科云融合", "href": "cetc.md"}
+        {
+          "title": "项目简介",
+          "href": "index.md"
+        }
+      ]
+    },
+    {
+      "title": "项目",
+      "key": "project",
+      "subs": [
+        {
+          "title": "安全云",
+          "subs": [
+            {"title": "CloudOS3.0融合", "href": "seccloud/cloudos.md"},
+            {"title": "电科云融合", "href": "seccloud/cetc.md"}
+          ]
+        },
+        {
+          "title": "云墙",
+          "subs": [
+            {"title": "云墙三期", "href": "yunqiang/cm3.md"},
+            {"title": "绿洲融合", "href": "yunqiang/cm-lz.md"}
+          ]
+        },
+        {
+          "title": "SDN安全控制器",
+          "subs": [
+            {"title": "太保项目", "href": "sdn/tb.md"},
+            {"title": "内蒙古项目", "href": "sdn/nmg.md"},
+            {"title": "LB支持IPv6", "href": "sdn/lb-ipv6.md"},
+            {"title": "VPN支持IPv6", "href": "sdn/vpn-ipv6.md"}
+          ]
+        }
+      ]
+    },
+    {
+      "title": "人员",
+      "key": "user",
+      "subs": [
+        {
+          "title": "列表",
+          "href": "user/list.html"
+        },
+        {
+          "title": "周报",
+          "href": "user/report.html"
+        }
       ]
     }
   ]

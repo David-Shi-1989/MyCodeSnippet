@@ -13,6 +13,16 @@ var main = {
   },
   initEvent: function () {
     // this.listenScroll()
+    var me = this
+    $("#" + this.def.id).bind("main-change-content", function (evt, href) {
+      me.renderMainContent(href)
+    })
+    $("#" + this.def.id).bind("main-change-breadcrumb", function (evt, title1, title2, title3) {
+      var title = [title1, title2, title3].filter(function (item) {
+        return item != undefined && item != null
+      }).join(' - ')
+      me.setTitle(title)
+    })
   },
   listenScroll: function () {
     var wrapEl = document.getElementById('app_right')
@@ -34,14 +44,35 @@ var main = {
     }
     function calScrollProgress () {}
   },
-  renderMainContent: function () {
+  renderMainContent: function (href) {
     var me = this
-    $.get("../page/index.md", function (data, status) {
-      me.setMainContent(data)
+    var path = "../page/" + (href || "index.md")
+    $.ajax({
+      url: path,
+      type: "GET",
+      success: function (data) {
+        if (/\.md$/.test(path)) {
+          me.setMainContent({md: data})
+        } else if (/\.html$/.test(path)) {
+          data = data.slice(data.indexOf('<body>') + '<body>'.length).trim()
+          data = data.slice(0, data.indexOf('</body>')).trim()
+          me.setMainContent({html: data})
+        }
+      },
+      error: function () {
+        me.setMainContent({html: '<span style="color:red;">404</span>'})
+      }
     })
   },
-  setMainContent: function (mdContent) {
-    $("#main .m_content").mdjs(mdContent)
+  setMainContent: function (obj) {
+    if (obj.md) {
+      $("#main .m_content").mdjs(obj.md)
+    } else if (obj.html) {
+      $("#main .m_content").html(obj.html)
+    }
+  },
+  setTitle: function (title) {
+    $("#main .m_title").text(title)
   }
 }
 module.exports = main

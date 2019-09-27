@@ -1,26 +1,21 @@
 var sideBar = {
   def: {
-    id: 'side_bar'
+    id: 'side_bar',
+    menus: []
   },
   init: function () {
     this.initMenu()
     this.initEvent()
   },
-  initMenu: function () {
-    var data = {
-      items: [
-        {
-          title: '安全云'
-        },
-        {
-          title: '云墙',
-          subs: [
-            { title: 'task1' },
-            { title: 'task2' }
-          ]
-        }
-      ]
-    }
+  initMenu: function (_headerKey) {
+    var menus = require('../page/menu.json').menus
+    this.def.menus = menus.filter(function (item, index) {
+      if (_headerKey) {
+        return item.key == _headerKey
+      } else {
+        return index === 0
+      }
+    })[0]
     function addIndex (arr, _preset) {
       var preset = _preset || ''
       for (var i = 0; i < arr.length; i++) {
@@ -31,11 +26,19 @@ var sideBar = {
       }
       return arr
     }
-    addIndex(data.items)
-    var template = $('#side_bar .s-catalog').prepend($('#tpl_sidebar_menu').template(data))
+    addIndex(this.def.menus.subs)
+    var template = $('#side_bar .s-catalog').html('').prepend($('#tpl_sidebar_menu').template(this.def.menus))
+    this.bindMenuClick()
   },
   initEvent: function () {
+    this.bindTrigger()
     this.bindMenuClick()
+  },
+  bindTrigger: function () {
+    var me = this
+    $("#"+this.def.id).bind("side-menu-reload", function (evt, headerKey) {
+      me.initMenu(headerKey)
+    })
   },
   bindMenuClick () {
     var me = this
@@ -79,6 +82,23 @@ var sideBar = {
         if (!$el.hasClass('active')) {
           clearMenuActiveStatus()
           addMenuActiveStatus($el.data('id'))
+          if ($el.data('href')) {
+            $("#main").trigger('main-change-content', $el.data('href'))
+            var menuId = $el.data('id').toString().split('.').map(function (item) {
+              return (parseInt(item) - 1)
+            })
+            var breadCrumb = []
+            if (me.def.menus.title) {
+              breadCrumb.push(me.def.menus.title)
+            }
+            if (me.def.menus.subs[menuId[0]].title) {
+              breadCrumb.push(me.def.menus.subs[menuId[0]].title)
+            }
+            if (menuId[1] && me.def.menus.subs[menuId[0]].subs[menuId[1]].title) {
+              breadCrumb.push(me.def.menus.subs[menuId[0]].subs[menuId[1]].title)
+            }
+            $("#main").trigger('main-change-breadcrumb', breadCrumb)
+          }
           console.log('on menu ' + $el.data('id') + ' click')
         }
       }
@@ -88,7 +108,23 @@ var sideBar = {
       if (!$el.hasClass('active')) {
         clearMenuActiveStatus()
         addMenuActiveStatus($el.data('id'))
-        console.log('on menu ' + $el.data('id') + ' click')
+        var href = $el.data('href')
+        console.log('on menu ' + $el.data('id') + '('+ href + ') click')
+        var menuId = $el.data('id').toString().split('.').map(function (item) {
+          return (parseInt(item) - 1)
+        })
+        var breadCrumb = []
+        if (me.def.menus.title) {
+          breadCrumb.push(me.def.menus.title)
+        }
+        if (me.def.menus.subs[menuId[0]].title) {
+          breadCrumb.push(me.def.menus.subs[menuId[0]].title)
+        }
+        if (menuId[1] && me.def.menus.subs[menuId[0]].subs[menuId[1]].title) {
+          breadCrumb.push(me.def.menus.subs[menuId[0]].subs[menuId[1]].title)
+        }
+        $("#main").trigger('main-change-content', href)
+        $("#main").trigger('main-change-breadcrumb', breadCrumb)
       }
     })
   },

@@ -7,13 +7,10 @@ var header = {
     this.initEvent()
   },
   initMenu: function () {
-    var data = {
-      items: [
-        {title: '主页', active: true},
-        {title: '项目'},
-        {title: '人员'}
-      ]
-    }
+    var data = {}
+    data.items = require('../page/menu.json').menus.map(function (item, index) {
+      return {title:item.title, key:item.key, active: index == 0}
+    })
     var template = $('#header').prepend($('#tpl_header_menu').template(data))
   },
   initEvent: function () {
@@ -28,6 +25,7 @@ var header = {
       $el.addClass('active')
       var left = ($el.index() * 5 + ($el.index() * 1.4))
       $('#'+me.def.id+' .h-menu > li.active-bg').css('left', left+'rem')
+      $("#side_bar").trigger('side-menu-reload', $el.data('key'))
       console.log('header menu switch to ' + $el.text())
     })
   },
