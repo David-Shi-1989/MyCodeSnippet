@@ -48,16 +48,6 @@
       {{/each}}
     </ul>
   </script>
-  <script>
-    // $(document).ready(function () {
-    //   init()
-    // })
-    // function init () {
-    //   header.init()
-    //   main.init()
-    //   sideBar.init()
-    // }
-  </script>
 </head>
 <body>
   <div id="app">
@@ -68,44 +58,6 @@
         <p class="s-logo-title2">Seccloud Web Report</p>
       </div>
       <div class="s-catalog">
-        <!-- <ul class="s-c-1">
-          <li class="s-c-item1">
-            <div class="s-c-link1-wrap">
-              <p class="s-c-link s-c-link1" data-id="1">
-                <span class="num">1</span>
-                <span>安全云</span>
-              </p>
-            </div>
-          </li>
-          <li class="s-c-item1">
-            <div class="s-c-link1-wrap">
-              <p class="s-c-link s-c-link1" data-id="2">
-                <span class="num">2</span>
-                <span>安全云项目</span>
-              </p>
-              <i class="fa fa-caret-left"></i>
-            </div>
-            <ul class="s-c-2">
-              <li class="s-c-item2"><span class="s-c-link s-c-link2" data-id="2.1"><span class="num">2.1</span>Web技术</span></li>
-              <li class="s-c-item2"><span class="s-c-link s-c-link2" data-id="2.2"><span class="num">2.2</span>NodeJS技术</span></li>
-              <li class="s-c-item2"><span class="s-c-link s-c-link2" data-id="2.3"><span class="num">2.3</span>后端技术</span></li>
-            </ul>
-          </li>
-          <li class="s-c-item1">
-            <div class="s-c-link1-wrap">
-              <p class="s-c-link s-c-link1"  data-id="3">
-                <span class="num">3</span>
-                <span>规范</span>
-              </p>
-              <i class="fa fa-caret-left"></i>
-            </div>
-            <ul class="s-c-2">
-              <li class="s-c-item2"><span class="s-c-link s-c-link2" data-id="3.1"><span class="num">3.1</span>html规范</span></li>
-              <li class="s-c-item2"><span class="s-c-link s-c-link2" data-id="3.2"><span class="num">3.2</span>js规范</span></li>
-              <li class="s-c-item2"><span class="s-c-link s-c-link2" data-id="3.3"><span class="num">3.3</span>ts规范</span></li>
-            </ul>
-          </li>
-        </ul> -->
       </div>
     </div>
     <div id="app_right">
@@ -133,6 +85,9 @@
       <div id="main">
         <p class="m_title"></p>
         <div class="m_content"></div>
+        <div class="m_loading">
+          <i class="fa fa-spinner fa-pulse"></i>
+        </div>
       </div>
     </div>
   </div>

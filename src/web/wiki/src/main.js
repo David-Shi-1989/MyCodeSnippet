@@ -45,6 +45,7 @@ var main = {
     function calScrollProgress () {}
   },
   renderMainContent: function (href) {
+    this.loading.show()
     var me = this
     var path = "../page/" + (href || "index.md")
     $.ajax({
@@ -58,11 +59,33 @@ var main = {
           data = data.slice(0, data.indexOf('</body>')).trim()
           me.setMainContent({html: data})
         }
+        me.loading.hide()
       },
       error: function () {
         me.setMainContent({html: '<span style="color:red;">404</span>'})
+        me.loading.hide()
       }
     })
+  },
+  loading: {
+    selector: "#main .m_loading",
+    ts: null,
+    DIS: 500,
+    show: function () {
+      this.ts = Date.now()
+      $(this.selector).show()
+    },
+    hide: function () {
+      var curTs = Date.now()
+      if (curTs - this.ts >= this.DIS) {
+        $(this.selector).hide()
+      } else {
+        var me = this
+        setTimeout(function () {
+          $(me.selector).hide()
+        }, (this.ts + this.DIS - curTs))
+      }
+    }
   },
   setMainContent: function (obj) {
     if (obj.md) {
