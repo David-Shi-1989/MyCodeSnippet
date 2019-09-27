@@ -6,7 +6,7 @@ var main = {
   init: function () {
     this.initUI()
     this.initEvent()
-    this.renderMainContent()
+    // this.renderMainContent()
   },
   initUI: function () {
     $('#app_right').height($('body').height() + 'px')
@@ -18,10 +18,10 @@ var main = {
       me.renderMainContent(href)
     })
     $("#" + this.def.id).bind("main-change-breadcrumb", function (evt, title1, title2, title3) {
-      var title = [title1, title2, title3].filter(function (item) {
+      var titleArr = [title1, title2, title3].filter(function (item) {
         return item != undefined && item != null
-      }).join(' - ')
-      me.setTitle(title)
+      }).map(function (item) { return {title: item} })
+      me.setTitle(titleArr)
     })
   },
   listenScroll: function () {
@@ -72,7 +72,8 @@ var main = {
     }
   },
   setTitle: function (title) {
-    $("#main .m_title").text(title)
+    // tpl_breadcrumb
+    $('#main .m_title').html('').prepend($('#tpl_breadcrumb').template({items: title}))
   }
 }
 module.exports = main

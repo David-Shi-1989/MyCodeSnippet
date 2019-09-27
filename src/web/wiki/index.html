@@ -41,6 +41,13 @@
       {{/each}}
     </ul>
   </script>
+  <script id="tpl_breadcrumb" type="text/x-handlebars-template">
+    <ul>
+      {{#each items}}
+      <li>{{title}}</li>
+      {{/each}}
+    </ul>
+  </script>
   <script>
     // $(document).ready(function () {
     //   init()
@@ -124,7 +131,7 @@
         </div>
       </header>
       <div id="main">
-        <p class="m_title">主页</p>
+        <p class="m_title"></p>
         <div class="m_content"></div>
       </div>
     </div>

@@ -4,12 +4,11 @@ var sideBar = {
     menus: []
   },
   init: function () {
+    this.bindTrigger()
     this.initMenu()
-    this.initEvent()
   },
   initMenu: function (_headerKey) {
-    var menus = require('../page/menu.json').menus
-    this.def.menus = menus.filter(function (item, index) {
+    this.def.menus = window.secweb.menus.filter(function (item, index) {
       if (_headerKey) {
         return item.key == _headerKey
       } else {
@@ -27,11 +26,33 @@ var sideBar = {
       return arr
     }
     addIndex(this.def.menus.subs)
-    var template = $('#side_bar .s-catalog').html('').prepend($('#tpl_sidebar_menu').template(this.def.menus))
-    this.bindMenuClick()
+    $('#side_bar .s-catalog').html('').prepend($('#tpl_sidebar_menu').template(this.def.menus))
+    this.initEvent()
+    // 默认选中第一个
+    function getActiveDefaultIndex () {
+      var index = 'xxx'
+      if (secweb.activeHeaderKey && secweb.menus.some(function (item) {return item.key == secweb.activeHeaderKey})) {
+        var activeMenus = secweb.menus.filter(function (item) {
+          return (item.key == secweb.activeHeaderKey)
+        })[0]
+        if (activeMenus && activeMenus.subs && activeMenus.subs.length) {
+          if (activeMenus.subs[0].href) {
+            return activeMenus.subs[0].index
+          } else if (activeMenus.subs[0].subs && activeMenus.subs[0].subs.length) {
+            if (activeMenus.subs[0].subs[0] && activeMenus.subs[0].subs[0].href) {
+              return activeMenus.subs[0].subs[0].index
+            }
+          }
+        }
+      }
+      return index
+    }
+    var activeIndex = getActiveDefaultIndex()
+    setTimeout(function () {
+      $(".s-c-link[data-id='"+activeIndex+"']").trigger('click')
+    }, 200)
   },
   initEvent: function () {
-    this.bindTrigger()
     this.bindMenuClick()
   },
   bindTrigger: function () {
@@ -94,7 +115,7 @@ var sideBar = {
             if (me.def.menus.subs[menuId[0]].title) {
               breadCrumb.push(me.def.menus.subs[menuId[0]].title)
             }
-            if (menuId[1] && me.def.menus.subs[menuId[0]].subs[menuId[1]].title) {
+            if (!isNaN(menuId[1]) && me.def.menus.subs[menuId[0]].subs[menuId[1]].title) {
               breadCrumb.push(me.def.menus.subs[menuId[0]].subs[menuId[1]].title)
             }
             $("#main").trigger('main-change-breadcrumb', breadCrumb)
@@ -120,11 +141,19 @@ var sideBar = {
         if (me.def.menus.subs[menuId[0]].title) {
           breadCrumb.push(me.def.menus.subs[menuId[0]].title)
         }
-        if (menuId[1] && me.def.menus.subs[menuId[0]].subs[menuId[1]].title) {
+        if (!isNaN(menuId[1]) && me.def.menus.subs[menuId[0]].subs[menuId[1]].title) {
           breadCrumb.push(me.def.menus.subs[menuId[0]].subs[menuId[1]].title)
         }
         $("#main").trigger('main-change-content', href)
         $("#main").trigger('main-change-breadcrumb', breadCrumb)
+        if (menuId.length == 2) {
+          // 如果是三级菜单,需要检查二级菜单是否打开
+          var menu1Id = $el.data('id').toString().split('.')[0]
+          var menu1El = $("p.s-c-link1[data-id='"+menu1Id+"']")
+          if (!menu1El.parent().parent().hasClass('open')) {
+            menu1El.trigger('click')
+          }
+        }
       }
     })
   },

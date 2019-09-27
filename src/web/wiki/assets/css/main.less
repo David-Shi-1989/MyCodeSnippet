@@ -1,12 +1,24 @@
 & {
   padding: 0 2rem;
   .m_title {
-    font-size: 2rem;
-    font-weight: bolder;
+    @height: .4rem;
+    font-size: 1.4rem;
     color: var(--color-text-title);
-    border-bottom: .4rem solid var(--color-border);
+    border-bottom: .2rem solid var(--color-border);
     display: inline-block;
     padding-right: 5rem;
+    line-height: @height;
+    ul {
+      display: flex;
+      & > li:not(:last-child) {
+        margin-right: 10px;
+        &::after{
+          content: "/";
+          color: var(--color-border);
+          margin-left: 10px;
+        }
+      }
+    }
   }
   .m_content {
     height: 80rem;

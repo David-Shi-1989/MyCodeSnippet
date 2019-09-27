@@ -13,6 +13,10 @@ require('../../../../assets/vendor/handlebars/handlebars-jquery')
 require('../../../../assets/vendor/bootstrapv3.3.7/js/bootstrap')
 require('../../../../assets/vendor/md-js/mdjs')
 require('../../../../assets/vendor/md-js/mdjs-jquery')
+
+window.secweb = {
+  menus: require('../page/menu.json').menus
+}
 $(document).ready(function () {
   header.init()
   sidebar.init()

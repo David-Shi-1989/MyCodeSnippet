@@ -8,10 +8,14 @@ var header = {
   },
   initMenu: function () {
     var data = {}
-    data.items = require('../page/menu.json').menus.map(function (item, index) {
-      return {title:item.title, key:item.key, active: index == 0}
+    data.items = window.secweb.menus.map(function (item, index) {
+      var obj = {title:item.title, key:item.key, active: index == 0}
+      if (obj.active) {
+        secweb.activeHeaderKey = obj.key
+      }
+      return obj
     })
-    var template = $('#header').prepend($('#tpl_header_menu').template(data))
+    $('#header').prepend($('#tpl_header_menu').template(data))
   },
   initEvent: function () {
     this.bindMenuClick()
@@ -25,12 +29,12 @@ var header = {
       $el.addClass('active')
       var left = ($el.index() * 5 + ($el.index() * 1.4))
       $('#'+me.def.id+' .h-menu > li.active-bg').css('left', left+'rem')
+      secweb.activeHeaderKey = $el.data('key')
       $("#side_bar").trigger('side-menu-reload', $el.data('key'))
       console.log('header menu switch to ' + $el.text())
     })
   },
   bindLocaleItemClick () {
-    var me = this
     $('#'+this.def.id+' .dropdown ul.dropdown-menu > li').on('click', function (evt) {
       var $el = evt.target.tagName.toLowerCase() == 'li' ? $(evt.target) : $(evt.target.parentNode)
       if (!$el.hasClass('active')) {
