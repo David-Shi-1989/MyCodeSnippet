@@ -13,7 +13,7 @@ require('../../../../assets/vendor/handlebars/handlebars-jquery')
 require('../../../../assets/vendor/bootstrapv3.3.7/js/bootstrap')
 require('../../../../assets/vendor/md-js/mdjs')
 require('../../../../assets/vendor/md-js/mdjs-jquery')
-
+require('./htmlElement')
 window.secweb = {
   menus: require('../page/menu.json').menus
 }
