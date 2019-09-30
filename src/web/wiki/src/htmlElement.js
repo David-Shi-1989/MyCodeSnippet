@@ -38,7 +38,6 @@ class userTag extends HTMLElement {
       wrap.style.gridTemplateAreas = '"img name" "img id"'
     } else {
     }
-    var id = this.id
     var isShowPhoto = this.showPhoto
     var userItem = getUserItem()
 
@@ -75,6 +74,9 @@ class userTag extends HTMLElement {
           return ((id == item.id || item.en.indexOf(name) > -1))
         })
         if (mathchedItems && mathchedItems.length > 0) {
+          if (!mathchedItems[0].img) {
+            mathchedItems[0].img = "../../assets/image/avatar/20150723115018_ma428.jpeg"
+          }
           return mathchedItems[0]
         } else {
           throw new Error('Unmatched params id or name')
@@ -175,7 +177,7 @@ class userTag extends HTMLElement {
     function getStyleText () {
       var style = []
       style.push('.tooltip:after{content:"";border-width:0px 5px 5px 5px;border-color:transparent transparent '+def.floatLayerBgColor+' transparent;position:absolute;width:0;height:0;border-style:solid;margin-top:-13px;margin-left:2px;}')
-      style.push('.tooltip img{width: 100px;}')
+      style.push('.tooltip img{width: 100px;height:100px;}')
       style.push('.wrap:hover .tooltip {display: flex !important;}')
       // info
       style.push('.tooltip ul.info{list-style:none;color:#f2f2f2;padding: 0 0 0 10px;margin:0;font-size:12px;}')
@@ -201,7 +203,7 @@ class userTag extends HTMLElement {
     return this.getAttribute('id') || ''
   }
   get name () {
-    return this.getAttribute('en') || ''
+    return this.getAttribute('name') || ''
   }
   get showPhoto () {
     return !(this.getAttribute('show-photo') == false || this.getAttribute('show-photo') == "false")

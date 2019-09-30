@@ -47,38 +47,3 @@ ul {
     }
   }
 }
-
-/*自定义标签*/
-user-tag {
-  display: grid;
-  @line-height: 25px;
-  grid-template-columns:  @line-height * 2 80px;
-  grid-template-rows:  @line-height  @line-height;
-  grid-template-areas: 
-    "img name"
-    "img id";
-  cursor: pointer;
-  img {
-    grid-area: img;
-    width:  @line-height * 2;
-    border-radius: 50%;
-    border: 1px solid var(--color-border);
-  }
-  p {
-    margin: 0;
-    line-height:  @line-height;
-    height:  @line-height;
-    padding-left: 5px;
-    &.name {
-      grid-area: name;
-      color: var(--color-text-title);
-      font-size: 14px;
-      font-weight: bolder;
-    }
-    &.id {
-      grid-area: id;
-      color: var(--color-subcolor);
-      font-size: 12px;
-    }
-  }
-}
