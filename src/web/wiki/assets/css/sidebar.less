@@ -25,7 +25,6 @@
       padding: .3rem 1rem;
       border-radius: .2rem;
       height: @menu-height;
-      line-height: @menu-height;
       transition: all .3s;
       &:hover:not(.active) {
         color: var(--color-primary);
@@ -64,7 +63,8 @@
           padding-left: 2rem;
           & > li.s-c-item2 {
             .s-c-link2 {
-              .menu-link(1.2rem)
+              .menu-link(1.2rem);
+              line-height: @menu-height;
             }
           }
         }
