@@ -11,7 +11,55 @@
   <body>
     <header>
       <p>个人门户导航</p>
-      <div class="tool clr-float">
+      <div class="search-wrap input-group">
+        <input type="text" class="form-control" id="input_header_search" onkeyup="UI.onHeaderSearchInputKeyup()">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">Go!</button>
+        </span>
+        <div class="search-result-wrap">
+          <div class="search-ul-wrap">
+            <ul>
+              <li>
+                <a><span class="title">title1</span><span class="url">www.title1.com</span><span class="des">dddesss1</span></a>
+              </li>
+              <li>
+                <a><span class="title">title2</span><span class="url">www.title2.com</span><span class="des">dddesss1</span></a>
+              </li>
+              <li>
+                <a><span class="title">title3</span><span class="url">www.title3.com</span><span class="des">dddesss1</span></a>
+              </li>
+              <li>
+                <a><span class="title">title3</span><span class="url">www.title3.com</span><span class="des">dddesss1</span></a>
+              </li>
+              <li>
+                <a><span class="title">title3</span><span class="url">www.title3.com</span><span class="des">dddesss1</span></a>
+              </li>
+              <li>
+                <a><span class="title">title3</span><span class="url">www.title3.com</span><span class="des">dddesss1</span></a>
+              </li><li>
+                <a><span class="title">title3</span><span class="url">www.title3.com</span><span class="des">dddesss1</span></a>
+              </li>
+              <li>
+                <a><span class="title">title3</span><span class="url">www.title3.com</span><span class="des">dddesss1</span></a>
+              </li>
+              <li>
+                <a><span class="title">title3</span><span class="url">www.title3.com</span><span class="des">dddesss1</span></a>
+              </li>
+              <li>
+                <a><span class="title">title3</span><span class="url">www.title3.com</span><span class="des">dddesss1</span></a>
+              </li>
+              <li>
+                <a><span class="title">title3</span><span class="url">www.title3.com</span><span class="des">dddesss1</span></a>
+              </li>
+              <li>
+                <a><span class="title">title3</span><span class="url">www.title3.com</span><span class="des">dddesss1</span></a>
+              </li>
+            </ul>
+          </div>
+          <div class="total">搜索结果：总计<span>10</span>条<button type="button" class="btn btn-primary btn-xs" onclick="UI.hideHeaderSearch()">关闭</button></div>
+        </div>
+      </div>
+      <div class="tool" class="search">
         <span onclick="UI.onDisplayModeChange()" id="btn_editDemoSwitch">编辑</span>
         <span>导入</span>
         <span>导出</span>

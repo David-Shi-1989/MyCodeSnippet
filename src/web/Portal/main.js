@@ -8,7 +8,6 @@ require('../../../assets/vendor/bootstrapv3.3.7/css/bootstrap.css')
 require('./style.less')
 
 // js
-// require('../../../assets/vendor/jquery.min.js')
 require('../../../assets/vendor/bootstrapv3.3.7/js/bootstrap.js')
 import {Model, Storage, UI, Modal} from './script'
 window.Model = Model

@@ -2532,7 +2532,6 @@ __webpack_require__(/*! ../../../assets/vendor/bootstrapv3.3.7/css/bootstrap.css
 __webpack_require__(/*! ./style.less */ "./style.less")
 
 // js
-// require('../../../assets/vendor/jquery.min.js')
 __webpack_require__(/*! ../../../assets/vendor/bootstrapv3.3.7/js/bootstrap.js */ "../../../assets/vendor/bootstrapv3.3.7/js/bootstrap.js")
 
 window.Model = _script__WEBPACK_IMPORTED_MODULE_1__["Model"]
@@ -2829,6 +2828,39 @@ var UI = {
     var isDemo = $("#main").hasClass(EDIT_CLASS)
     $("#btn_editDemoSwitch").text(isDemo ? '编辑' : '展示')
     $("#main").removeClass(isDemo ? EDIT_CLASS : DEMO_CLASS).addClass(isDemo ? DEMO_CLASS : EDIT_CLASS)
+  },
+  // header
+  onHeaderSearchInputKeyup: function () {
+    var currentText = $("#input_header_search").val()
+    setTimeout(function () {
+      var nextText = $("#input_header_search").val()
+      if (currentText == nextText) {
+        UI.headerSearch(currentText)
+      }
+    }, 800)
+  },
+  headerSearch: function (keyword) {
+    if (keyword) {
+      this.showHeaderSearchResult(keyword, Storage.searchByKeyword(keyword))
+    }
+  },
+  showHeaderSearchResult: function (keyword, resultArr) {
+    function hightlight (fullstr, _hlStr) {
+      var hlStr = _hlStr || keyword
+      return fullstr.replace(new RegExp(hlStr, 'g'), '<span class="hightlight">' + hlStr +'</span>')
+    }
+    var html = ''
+    resultArr.forEach(function (item, index) {
+      html += '<li><a href="_URL_0" target="_blank"><span class="title">_TITLE_</span><span class="url">_URL_</span><span class="des">_DESCRIPTION_</span></a></li>'
+      .replaceAll('_URL_0', item.url).replaceAll('_URL_', hightlight(item.url)).replaceAll('_TITLE_', hightlight(item.title)).replaceAll('_DESCRIPTION_', hightlight(item.description))
+    })
+    $('header .search-result-wrap ul').empty().html(html)
+    $('header .search-wrap .total span').text(resultArr.length)
+    $('header .search-result-wrap').show()
+  },
+  hideHeaderSearch: function () {
+    $("#input_header_search").val('')
+    $('header .search-result-wrap').hide()
   }
 }
 // localStorage
@@ -3002,6 +3034,22 @@ var Storage = {
     var iData = this.getItemById(categoryId, itemId)
     iData.visitCount = Number(count)
     this.saveData(false)
+  },
+  // search
+  searchByKeyword: function (keyword) {
+    var arr = []
+    for (var i = 0; i < this.data.length; i++) {
+      var categoryItem = this.data[i]
+      if (categoryItem && categoryItem.children) {
+        for (var j = 0; j < categoryItem.children.length; j++) {
+          var urlItem = categoryItem.children[j]
+          if (urlItem && ((urlItem.title&&urlItem.title.indexOf(keyword) > -1) || (urlItem.url&&urlItem.url.indexOf(keyword) > -1) || (urlItem.description&&urlItem.description.indexOf(keyword) > -1))) {
+            arr.push(urlItem)
+          }
+        }
+      }
+    }
+    return arr
   }
 }
 // 弹窗
