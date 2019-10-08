@@ -250,12 +250,15 @@ export var UI = {
   headerSearch: function (keyword) {
     if (keyword) {
       this.showHeaderSearchResult(keyword, Storage.searchByKeyword(keyword))
+    } else {
+      $('header .search-result-wrap ul').empty()
+      $('header .search-wrap .total span').text(0)
     }
   },
   showHeaderSearchResult: function (keyword, resultArr) {
     function hightlight (fullstr, _hlStr) {
       var hlStr = _hlStr || keyword
-      return fullstr.replace(new RegExp(hlStr, 'g'), '<span class="hightlight">' + hlStr +'</span>')
+      return fullstr.replace(new RegExp('('+hlStr+')', 'ig'), '<span class="hightlight">$1</span>')
     }
     var html = ''
     resultArr.forEach(function (item, index) {
@@ -451,7 +454,7 @@ export var Storage = {
       if (categoryItem && categoryItem.children) {
         for (var j = 0; j < categoryItem.children.length; j++) {
           var urlItem = categoryItem.children[j]
-          if (urlItem && ((urlItem.title&&urlItem.title.indexOf(keyword) > -1) || (urlItem.url&&urlItem.url.indexOf(keyword) > -1) || (urlItem.description&&urlItem.description.indexOf(keyword) > -1))) {
+          if (urlItem && ((urlItem.title&&urlItem.title.toLowerCase().indexOf(keyword) > -1) || (urlItem.url&&urlItem.url.toLowerCase().indexOf(keyword) > -1) || (urlItem.description&&urlItem.description.toLowerCase().indexOf(keyword) > -1))) {
             arr.push(urlItem)
           }
         }
