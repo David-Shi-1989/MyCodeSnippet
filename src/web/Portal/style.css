@@ -116,6 +116,19 @@ formItem textarea {
   width: 100%;
   padding: 5px 10px;
 }
+#main.mode-edit .category-item.is-open .category-title i {
+  transform: rotate(0deg);
+}
+#main.mode-edit .category-item.is-open .card-container {
+  height: auto;
+}
+#main.mode-edit .category-item.is-close .category-title i {
+  transform: rotate(-90deg);
+}
+#main.mode-edit .category-item.is-close .card-container {
+  height: 0;
+  overflow: hidden;
+}
 #main.mode-edit .category-item .category-title {
   font-size: 16px;
   margin-bottom: 10px;
@@ -147,10 +160,6 @@ formItem textarea {
   zoom: 1;
   margin-top: 5px;
   --size-per-line: 8;
-}
-#main.mode-edit .category-item .card-container.hidden {
-  height: 0;
-  overflow: hidden;
 }
 #main.mode-edit .category-item .card-container::after {
   display: block;
@@ -281,6 +290,19 @@ formItem textarea {
   width: 100%;
   padding: 5px 10px;
 }
+#main.mode-demo .category-item.is-open .category-title i {
+  transform: rotate(0deg);
+}
+#main.mode-demo .category-item.is-open .card-container {
+  height: auto;
+}
+#main.mode-demo .category-item.is-close .category-title i {
+  transform: rotate(-90deg);
+}
+#main.mode-demo .category-item.is-close .card-container {
+  height: 0;
+  overflow: hidden;
+}
 #main.mode-demo .category-item .category-title > span {
   font-size: 16px;
   margin-bottom: 10px;
@@ -312,10 +334,6 @@ formItem textarea {
   --size-per-line: 8;
   display: flex;
   flex-wrap: wrap;
-}
-#main.mode-demo .category-item .card-container.hidden {
-  height: 0;
-  overflow: hidden;
 }
 #main.mode-demo .category-item .card-container > li {
   --margin-left: 30px;
@@ -516,13 +534,6 @@ formItem textarea {
   text-align: right;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
-}
-/*common*/
-.rotate-90 {
-  transform: rotate(90deg);
-}
-.rotate--90 {
-  transform: rotate(-90deg);
 }
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome

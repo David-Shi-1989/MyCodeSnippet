@@ -2619,7 +2619,7 @@ var Model = {
 var UI = {
   tpl: {
     category: 
-    `<div class="category-item" data-id="_CATEGORY_ID_">
+    `<div class="category-item _OPEN_CLASS_" data-id="_CATEGORY_ID_">
       <div class="category-title">
         <span><i class="fa fa-angle-down"></i>_CATEGORY_TITLE_<span class="category-size">_CATEGORY_ITEM_SIZE_</span></span>
       </div>
@@ -2654,10 +2654,13 @@ var UI = {
   },
   bindAngleClickToCollapse: function () {
     $('.category-title > span').on('click', function () {
-      var isOpen = $(this).children('i').hasClass('rotate--90')
-      $(this).children('i').toggleClass('rotate--90')
-      $(this).parent().siblings('ul.card-container').toggleClass('hidden')
-      // $(this).parent().siblings('ul.card-container').height(isOpen ? 'auto' : '0')
+      var isOpen = $(this).parent().parent().hasClass('is-close')
+      $(this).parent().parent().removeClass(isOpen ? 'is-close' : 'is-open').addClass(isOpen ? 'is-open' : 'is-close')
+      // TODO: 修改localStorage里的值isOpen
+      var categoryId = $(this).parent().parent().data('id')
+      var tmp = Storage.getCategoryDataById(categoryId)
+      tmp.isOpen = isOpen
+      Storage.editCategory(categoryId, tmp)
     })
   },
   renderURLCard: function () {
@@ -2671,6 +2674,8 @@ var UI = {
       var id1 = data[i].id
       var title1 = data[i].title
       var count = data[i].children ? data[i].children.length : 0
+      var hiddenClass = data[i].isOpen ? 'is-open' : 'is-close'
+      curCategoryHtml = curCategoryHtml.replaceAll('_OPEN_CLASS_', hiddenClass)
       var sumItemHtml = ''
       for (var j = 0; j < count; j++) {
         var curItemHtml = this.tpl.item
@@ -2865,14 +2870,35 @@ var Storage = {
     return false
   },
   editCategory: function (categoryId, formObj) {
+    var cData = this.getCategoryDataById(categoryId)
+    if (cData) {
+      // check category name is conflict
+      if (this.isCategoryNameConflict(formObj.title, formObj.id) < 0) {
+        this.data.some((function (item, index) {
+          if (item.id == formObj.id) {
+            item = formObj
+            return true
+          } else {
+            return false
+          }
+        }))
+        this.saveData(true)
+      } else {
+        console.error('categoryName ' + formObj.title + ' is conflict')
+      }
+    } else {
+      console.error('CategoryId ' + categoryId + ' in not existed')
+    }
   },
-  isCategoryNameConflict: function (categoryName) {
+  isCategoryNameConflict: function (categoryName, categoryId) {
     var result = -1
     if (categoryName) {
-      var filterArr = this.data.some(function (item, idx) {
-        if (item.title == categoryName) {
+      this.data.some(function (item, idx) {
+        if (item.title == categoryName && item.id != categoryId) {
           result = idx
           return true
+        } else {
+          return false
         }
       })
     }

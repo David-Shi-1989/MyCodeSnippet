@@ -43,6 +43,12 @@
 
 - [弹性布局](https://david-shi-1989.github.io/MyCodeSnippet/src/component/flex-box/index.html)
 
-    [`src\component\flex-box\index.html`]
+    `src\component\flex-box\index.html`
 
     利用CSS三种方式实现弹性布局，自动占满剩余的宽度。更新时间：2019/9/2
+    
+- [个人书签首页](https://david-shi-1989.github.io/MyCodeSnippet/src/web/Portal/index.html)
+
+    `src\web\Portal\index.html`
+
+    前端静态页面，可用于浏览器首页，保存网页书签。可统计点击次数和创建修改时间。更新时间： 2019/10/8

@@ -230,10 +230,11 @@ export var UI = {
     Storage.deleteItem(categoryId, itemId)
   },
   // config
-  onDisplayModeChange: function () {
+  onDisplayModeChange: function (event) {
     var DEMO_CLASS = "mode-demo"
     var EDIT_CLASS = "mode-edit"
     var isDemo = $("#main").hasClass(EDIT_CLASS)
+    $("#btn_editDemoSwitch").text(isDemo ? '编辑' : '展示')
     $("#main").removeClass(isDemo ? EDIT_CLASS : DEMO_CLASS).addClass(isDemo ? DEMO_CLASS : EDIT_CLASS)
   }
 }
