@@ -1,6 +1,6 @@
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const DIST_DIR = path.join(__dirname, 'dist')
+const DIST_DIR = path.join(__dirname)
 module.exports = {
   mode: 'development',
   devtool: 'source-map',

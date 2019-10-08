@@ -88,7 +88,7 @@
 
 /***/ "../../../assets/vendor/bootstrapv3.3.7/css/bootstrap.css":
 /*!********************************************************************************!*\
-  !*** f:/Dev/Git/MyCodeSnippet/assets/vendor/bootstrapv3.3.7/css/bootstrap.css ***!
+  !*** c:/dev/Git/MyCodeSnippet/assets/vendor/bootstrapv3.3.7/css/bootstrap.css ***!
   \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -99,7 +99,7 @@
 
 /***/ "../../../assets/vendor/bootstrapv3.3.7/js/bootstrap.js":
 /*!******************************************************************************!*\
-  !*** f:/Dev/Git/MyCodeSnippet/assets/vendor/bootstrapv3.3.7/js/bootstrap.js ***!
+  !*** c:/dev/Git/MyCodeSnippet/assets/vendor/bootstrapv3.3.7/js/bootstrap.js ***!
   \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -2487,7 +2487,7 @@ if (typeof jQuery === 'undefined') {
 
 /***/ "../../../assets/vendor/font-awesome/css/font-awesome.css":
 /*!********************************************************************************!*\
-  !*** f:/Dev/Git/MyCodeSnippet/assets/vendor/font-awesome/css/font-awesome.css ***!
+  !*** c:/dev/Git/MyCodeSnippet/assets/vendor/font-awesome/css/font-awesome.css ***!
   \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -2498,7 +2498,7 @@ if (typeof jQuery === 'undefined') {
 
 /***/ "../../../assets/vendor/jquery.min.js":
 /*!************************************************************!*\
-  !*** f:/Dev/Git/MyCodeSnippet/assets/vendor/jquery.min.js ***!
+  !*** c:/dev/Git/MyCodeSnippet/assets/vendor/jquery.min.js ***!
   \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -2539,7 +2539,6 @@ window.Model = _script__WEBPACK_IMPORTED_MODULE_1__["Model"]
 window.Storage = _script__WEBPACK_IMPORTED_MODULE_1__["Storage"]
 window.UI = _script__WEBPACK_IMPORTED_MODULE_1__["UI"]
 window.Modal = _script__WEBPACK_IMPORTED_MODULE_1__["Modal"]
-console.log('Modal',_script__WEBPACK_IMPORTED_MODULE_1__["Modal"])
 
 Number.prototype.random = function(max, min) {
   max = (!isNaN(max) ? parseInt(max) : 10)
@@ -2563,7 +2562,7 @@ String.prototype.replaceAll = function (replacedStr, targetStr) {
   }
   return str
 }
-function deepCopy (val) {
+window.deepCopy = function (val) {
   if (typeof (val) === 'object') {
     return JSON.parse(JSON.stringify(val))
   } else {
@@ -2573,9 +2572,8 @@ function deepCopy (val) {
 
 
 _assets_vendor_jquery_min_js__WEBPACK_IMPORTED_MODULE_0___default()(function () {
-  debugger
   _script__WEBPACK_IMPORTED_MODULE_1__["Storage"].data = _script__WEBPACK_IMPORTED_MODULE_1__["Storage"].getData()
-  _script__WEBPACK_IMPORTED_MODULE_1__["UI"].renderURLCard()
+  _script__WEBPACK_IMPORTED_MODULE_1__["UI"].init()
 })
 
 /***/ }),
@@ -2622,7 +2620,7 @@ var UI = {
   tpl: {
     category: 
     `<div class="category-item" data-id="_CATEGORY_ID_">
-      <p class="category-title"><i class="fa fa-angle-right"></i>_CATEGORY_TITLE_<span class="category-size">_CATEGORY_ITEM_SIZE_</span></p>
+      <p class="category-title"><i class="fa fa-angle-down"></i>_CATEGORY_TITLE_<span class="category-size">_CATEGORY_ITEM_SIZE_</span></p>
       <ul class="card-container">
         _ITEM_HTML_
         <li class="add" onclick="Modal.onAddItemClick('_CATEGORY_ID_')" ondragover="UI.onCardDragover(event)" ondrop="UI.onCardDrop(event)"><i class="fa fa-plus"></i></li>
@@ -2644,6 +2642,19 @@ var UI = {
         </ul>
       </div>
     </li>`
+  },
+  init: function () {
+    this.renderURLCard()
+    this.bindEvent()
+  },
+  bindEvent: function () {
+    this.bindAngleClickToCollapse()
+  },
+  bindAngleClickToCollapse: function () {
+    $('.category-title i.fa-angle-down').on('click', function () {
+      var isOpen = $(this).hasClass('rotate--90')
+      $(this).toggleClass('rotate--90').parent().siblings('ul.card-container').height(isOpen ? 'auto' : '0')
+    })
   },
   renderURLCard: function () {
     // clear UI
@@ -2767,7 +2778,7 @@ var UI = {
           Storage.data[dropItemIndex[0]].children = Storage.data[dropItemIndex[0]].children.concat(tmp)
         }
         Storage.saveData()
-        UI.renderURLCard()
+        UI.init()
       }
     } else {
       console.error('invalid dragDropObj', this.dragDropObj)
@@ -2801,6 +2812,13 @@ var UI = {
   },
   onItemDeleteClick: function (categoryId, itemId) {
     Storage.deleteItem(categoryId, itemId)
+  },
+  // config
+  onDisplayModeChange: function () {
+    var DEMO_CLASS = "mode-demo"
+    var EDIT_CLASS = "mode-edit"
+    var isDemo = $("#main").hasClass(EDIT_CLASS)
+    $("#main").removeClass(isDemo ? EDIT_CLASS : DEMO_CLASS).addClass(isDemo ? DEMO_CLASS : EDIT_CLASS)
   }
 }
 // localStorage
@@ -2823,7 +2841,7 @@ var Storage = {
           window.localStorage[this.KEY_NAME] = str
         }
         if (isRerenderUI) {
-          UI.renderURLCard()
+          UI.init()
         }
       } catch (e) {
   
@@ -3071,7 +3089,7 @@ var Modal = {
     }
     if (isSuccess) {
       this.closeModal()
-      UI.renderURLCard()
+      UI.init()
       this.clearModal()
     }
   },

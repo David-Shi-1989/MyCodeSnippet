@@ -8,5 +8,8 @@
     "server": "webpack-dev-server --config webpack.config.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "webpack-cli": "^3.3.9"
+  }
 }
