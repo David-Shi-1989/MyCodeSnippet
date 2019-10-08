@@ -27,7 +27,9 @@ export var UI = {
   tpl: {
     category: 
     `<div class="category-item" data-id="_CATEGORY_ID_">
-      <p class="category-title"><i class="fa fa-angle-down"></i>_CATEGORY_TITLE_<span class="category-size">_CATEGORY_ITEM_SIZE_</span></p>
+      <div class="category-title">
+        <span><i class="fa fa-angle-down"></i>_CATEGORY_TITLE_<span class="category-size">_CATEGORY_ITEM_SIZE_</span></span>
+      </div>
       <ul class="card-container">
         _ITEM_HTML_
         <li class="add" onclick="Modal.onAddItemClick('_CATEGORY_ID_')" ondragover="UI.onCardDragover(event)" ondrop="UI.onCardDrop(event)"><i class="fa fa-plus"></i></li>
@@ -35,7 +37,7 @@ export var UI = {
     </div>`,
     item: 
     `<li data-id="_ITEM_ID_" draggable="true" ondragstart="UI.onCardDragStart(event)" ondragover="UI.onCardDragover(event)" ondrop="UI.onCardDrop(event)">
-      <a class="title" data-href="_ITEM_URL_" onclick="UI.onLinkClick('_CATEGORY_ID_','_ITEM_ID_')">_ITEM_TITLE_</a>
+      <a class="title" data-href="_ITEM_URL_" onclick="UI.onLinkClick('_CATEGORY_ID_','_ITEM_ID_')" title="_ITEM_TITLE_">_ITEM_TITLE_</a>
       <p class="des">_ITEM_DESCRIPTION_</p>
       <div class="static">
         <span>访问次数</span>
@@ -58,9 +60,11 @@ export var UI = {
     this.bindAngleClickToCollapse()
   },
   bindAngleClickToCollapse: function () {
-    $('.category-title i.fa-angle-down').on('click', function () {
-      var isOpen = $(this).hasClass('rotate--90')
-      $(this).toggleClass('rotate--90').parent().siblings('ul.card-container').height(isOpen ? 'auto' : '0')
+    $('.category-title > span').on('click', function () {
+      var isOpen = $(this).children('i').hasClass('rotate--90')
+      $(this).children('i').toggleClass('rotate--90')
+      $(this).parent().siblings('ul.card-container').toggleClass('hidden')
+      // $(this).parent().siblings('ul.card-container').height(isOpen ? 'auto' : '0')
     })
   },
   renderURLCard: function () {

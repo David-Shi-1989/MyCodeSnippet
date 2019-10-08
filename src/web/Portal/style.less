@@ -116,31 +116,39 @@ formItem{
     .category-title{
       font-size: 16px;
       margin-bottom: 10px;
-      i {
+      > span {
         cursor: pointer;
-        margin-right: 5px;
-        transition: all .3s;
-      }
-      .category-size{
-        font-size: 12px;
-        background-color: #3b7fc4;
-        color: #fff;
-        border-radius: 50%;
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        line-height: 16px;
-        text-align: center;
-        margin-left: 5px;
+        i {
+        
+          margin-right: 5px;
+          transition: all .3s;
+        }
+        .category-size{
+          font-size: 12px;
+          background-color: #3b7fc4;
+          color: #fff;
+          border-radius: 50%;
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          line-height: 16px;
+          text-align: center;
+          margin-left: 5px;
+        }
       }
     }
     .card-container{
+      height: auto;
       list-style: none;
       transition: all .3s;
       font-size: 14px;
       zoom: 1;
       margin-top: 5px;
       --size-per-line: 8;
+      &.hidden {
+        height: 0;
+        overflow: hidden;
+      }
       &::after {
         display: block;
         content: "";
@@ -222,6 +230,8 @@ formItem{
           height: 15px;
           color: #3b73af;
           cursor: pointer;
+          text-overflow: ellipsis;
+          overflow: hidden;
           &:hover{
             text-decoration: underline;
           }
@@ -270,29 +280,32 @@ formItem{
     width: 100%;
     padding: 5px 10px;
     .category-title{
-      font-size: 16px;
-      margin-bottom: 10px;
-      i {
+      > span {
+        font-size: 16px;
+        margin-bottom: 10px;
         cursor: pointer;
-        margin-right: 5px;
-        transition: all .3s;
+        i {
+          margin-right: 5px;
+          transition: all .3s;
+        }
+        .category-size{
+          font-size: 12px;
+          background-color: #3b7fc4;
+          color: #fff;
+          border-radius: 50%;
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          line-height: 16px;
+          text-align: center;
+          margin-left: 5px;
+        }
       }
-      .category-size{
-        font-size: 12px;
-        background-color: #3b7fc4;
-        color: #fff;
-        border-radius: 50%;
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        line-height: 16px;
-        text-align: center;
-        margin-left: 5px;
-      }
+      
     }
     .card-container{
+      height: auto;
       list-style: none;
-      overflow: hidden;
       transition: all .3s;
       font-size: 14px;
       zoom: 1;
@@ -300,9 +313,13 @@ formItem{
       --size-per-line: 8;
       display: flex;
       flex-wrap: wrap;
+      &.hidden {
+        height: 0;
+        overflow: hidden;
+      }
       & > li {
         @item-height: 25px;
-        @item-width: 120px;
+        @item-width: 160px;
         --margin-left: 30px;
         position: relative;
         box-sizing: border-box;
@@ -377,6 +394,8 @@ formItem{
           height: @item-height;
           color: #3b73af;
           cursor: pointer;
+          text-overflow: ellipsis;
+          overflow: hidden;
           &:hover{
             text-decoration: none;
             background-color: #ddd;

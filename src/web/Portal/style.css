@@ -120,12 +120,14 @@ formItem textarea {
   font-size: 16px;
   margin-bottom: 10px;
 }
-#main.mode-edit .category-item .category-title i {
+#main.mode-edit .category-item .category-title > span {
   cursor: pointer;
+}
+#main.mode-edit .category-item .category-title > span i {
   margin-right: 5px;
   transition: all 0.3s;
 }
-#main.mode-edit .category-item .category-title .category-size {
+#main.mode-edit .category-item .category-title > span .category-size {
   font-size: 12px;
   background-color: #3b7fc4;
   color: #fff;
@@ -138,12 +140,17 @@ formItem textarea {
   margin-left: 5px;
 }
 #main.mode-edit .category-item .card-container {
+  height: auto;
   list-style: none;
   transition: all 0.3s;
   font-size: 14px;
   zoom: 1;
   margin-top: 5px;
   --size-per-line: 8;
+}
+#main.mode-edit .category-item .card-container.hidden {
+  height: 0;
+  overflow: hidden;
 }
 #main.mode-edit .category-item .card-container::after {
   display: block;
@@ -227,6 +234,8 @@ formItem textarea {
   height: 15px;
   color: #3b73af;
   cursor: pointer;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 #main.mode-edit .category-item .card-container > li a.title:hover {
   text-decoration: underline;
@@ -272,16 +281,16 @@ formItem textarea {
   width: 100%;
   padding: 5px 10px;
 }
-#main.mode-demo .category-item .category-title {
+#main.mode-demo .category-item .category-title > span {
   font-size: 16px;
   margin-bottom: 10px;
-}
-#main.mode-demo .category-item .category-title i {
   cursor: pointer;
+}
+#main.mode-demo .category-item .category-title > span i {
   margin-right: 5px;
   transition: all 0.3s;
 }
-#main.mode-demo .category-item .category-title .category-size {
+#main.mode-demo .category-item .category-title > span .category-size {
   font-size: 12px;
   background-color: #3b7fc4;
   color: #fff;
@@ -294,8 +303,8 @@ formItem textarea {
   margin-left: 5px;
 }
 #main.mode-demo .category-item .card-container {
+  height: auto;
   list-style: none;
-  overflow: hidden;
   transition: all 0.3s;
   font-size: 14px;
   zoom: 1;
@@ -304,13 +313,17 @@ formItem textarea {
   display: flex;
   flex-wrap: wrap;
 }
+#main.mode-demo .category-item .card-container.hidden {
+  height: 0;
+  overflow: hidden;
+}
 #main.mode-demo .category-item .card-container > li {
   --margin-left: 30px;
   position: relative;
   box-sizing: border-box;
   margin-right: 5px;
   padding: 0 5px;
-  width: 120px;
+  width: 160px;
   height: 25px;
   line-height: 25px;
   margin-bottom: 10px;
@@ -352,7 +365,7 @@ formItem textarea {
 }
 #main.mode-demo .category-item .card-container > li.add {
   height: 25px;
-  width: 60px;
+  width: 80px;
   box-sizing: border-box;
   border: 1px dashed #888;
   background: #f5f5f5;
@@ -380,6 +393,8 @@ formItem textarea {
   height: 25px;
   color: #3b73af;
   cursor: pointer;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 #main.mode-demo .category-item .card-container > li a.title:hover {
   text-decoration: none;
