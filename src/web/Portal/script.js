@@ -349,7 +349,7 @@ export var Storage = {
     return result
   },
   addItem: function (categoryId, itemName, itemUrl, itemDescription) {
-    if (categoryId && itemName) {
+    if (categoryId && itemName && itemUrl) {
       // check itemName is conflict
       if (!this.isItemNameConflict(categoryId, itemName)) {
         var cData = this.getCategoryDataById(categoryId)
@@ -359,8 +359,10 @@ export var Storage = {
       } else {
         alert('itemName conflict')
       }
-      return false
+    } else {
+      alert('missing required input')
     }
+    return false
   },
   editItem: function (categoryId, itemId, formObj) {
     var iData = this.getItemById(categoryId, itemId)
