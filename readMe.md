@@ -1,5 +1,6 @@
 # 我的代码记录 #
-记录平时开发中的有用代码。
+记录日常积累的代码。
+[文档](https://github.com/David-Shi-1989/MyCodeSnippet)
 
 ## 文件夹结构 ##
 - src
