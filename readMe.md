@@ -1,6 +1,6 @@
 # 我的代码记录 #
 记录日常积累的代码。
-[文档](https://david-shi-1989.github.io)
+[文档](https://david-shi-1989.github.io/MyCodeSnippet/)
 
 ## 文件夹结构 ##
 - src
