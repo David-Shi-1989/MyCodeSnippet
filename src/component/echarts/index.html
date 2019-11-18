@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="./echarts.min.js"></script>
+  <title>Document</title>
+  <style>
+    * {margin: 0; padding: 0;}
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #f2f2f2;
+    }
+    #app {
+      width: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      display: flex;
+      padding: 10px 20px;
+    }
+    .chart-container {
+      width: 400px;
+      height: 250px;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="chart-container" id="pie_chart_1"></div>
+  </div>
+</body>
+<script>
+window.onload = function () {
+  drawPieChart1()
+}
+function drawPieChart1 () {
+  var data = [
+    {name: '饮食', value: 1549},
+    {name: '服饰', value: 871},
+    {name: '网购', value: 531.2},
+    {name: '话费', value: 141},
+    {name: '交通', value: 98},
+    {name: '其他', value: 210.32}
+  ]
+  data.forEach(item => {
+    item.label = {
+      normal: {
+        show: false,
+        position: 'center'
+      }
+    }
+  })
+
+  var option = {
+    color: ['#fd9173', '#f36f8a', '#5f71d2', '#42a4eb', '#4ac7f5', '#bbbec4'],
+    legend: {
+      left: '5%',
+      top: '15%',
+      orient: 'vertical',
+      itemWidth: 10,
+      itemHeight: 10,
+      data: data.map(item => item.name),
+      textStyle: {
+        fontStyle: 'normal',
+        fontSize: 12
+      }
+    },
+    title: {
+      text: '总费用',
+      textAlign: 'center',
+      textStyle: {
+        fontWeight: 'normal',
+        color: '#808695',
+        fontSize: 14
+      },
+      subtext: data.map(item => item.value).reduce((total, item) => total + item),
+      subtextStyle: {
+        color: '#17233d',
+        fontSize: 20
+      },
+      x: '59%',
+      y: '35%'
+    },
+    series: [
+      {
+        name: 'feeChart',
+        type: 'pie',
+        clockwise: 'false',
+        minAngle: 20,
+        center: ['60%', '45%'],
+        radius: [60, 70],
+        avoidLabelOverlap: false,
+        itemStyle: {
+          normal: {
+            borderColor: '#fff',
+            borderWidth: 1
+          }
+        },
+        label: {
+          normal: {
+            show: false,
+            position: 'center',
+            formatter: [
+              '{text|{b}}',
+              '{value|{c}}{yuan|元}',
+              '{value|{d}%}'
+            ].join('\n'),
+            rich: {
+              text: {
+                fontSize: 14,
+                align: 'center',
+                verticalAlign: 'middle',
+                padding: 3
+              },
+              value: {
+                fontSize: 12,
+                align: 'center',
+                verticalAlign: 'middle',
+                padding: 2
+              },
+              yuan: {
+                fontSize: 8,
+                align: 'center',
+                verticalAlign: 'middle'
+              }
+            }
+          },
+          emphasis: {
+            show: true,
+            textStyle: {
+              fontSize: 12
+            }
+          }
+        },
+        data: data
+      }
+    ]
+  }
+  var chart = echarts.init(document.getElementById('pie_chart_1'))
+  chart.setOption(option)
+  chart.on('mouseover', function (params) {
+    let curIndex = params.dataIndex
+    for (let i = 0; i < option.series[0].data.length; i++) {
+      option.series[0].data[i].label.normal.show = (curIndex === i)
+    }
+    option.title.show = false
+    this.setOption(option)
+    this.dispatchAction({
+      type: 'highlight',
+      seriesIndex: 0,
+      dataIndex: curIndex
+    })
+  })
+  chart.on('mouseout', function (params) {
+    let curIndex = params.dataIndex
+    for (let i = 0; i < option.series[0].data.length; i++) {
+      option.series[0].data[i].label.normal.show = false
+    }
+    option.title.show = true
+    this.setOption(option)
+    this.dispatchAction({
+      type: 'downplay',
+      seriesIndex: 0,
+      dataIndex: curIndex
+    })
+  })
+}
+</script>
+</html>

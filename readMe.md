@@ -72,3 +72,9 @@
     `src\web\Portal\index.html`
 
     前端静态页面，可用于浏览器首页，保存网页书签。可统计点击次数和创建修改时间。更新时间： 2019/10/8
+
+- [echarts饼图](https://david-shi-1989.github.io/MyCodeSnippet/src/component/echarts/index.html)
+
+    `src\web\Portal\index.html`
+
+    饼图展示总费用，鼠标悬停子项时动态展示子费用以及占比。更新时间： 2019/11/18
