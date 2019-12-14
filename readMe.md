@@ -36,6 +36,13 @@
     
     简单的数据双向绑定demo，解释Observer，Watcher和Dep。 更新时间：2019/8/7
 
+- CSS Demo
+
+    `src\course\display-flex\index.html`
+    1. [flex布局](https://david-shi-1989.github.io/MyCodeSnippet/src/course/display-flex/index.html)
+      
+        更新时间：2019/12/14
+
 - Webpack教程
   
     `src\course\webpack`

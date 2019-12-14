@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../../../assets/vendor/bootstrapv3.3.7/css/bootstrap.min.css">
+  <script src="../../../assets/vendor/jquery.min.js"></script>
+  <script src="../../../assets/vendor/bootstrapv3.3.7/js/bootstrap.min.js"></script>
+  <title>display: flex;</title>
+  <style>
+    * { margin: 0; padding: 0;}
+    body {
+      padding: 0 20px 10px 20px;
+    }
+    .box-flex {
+      display: flex;
+      box-sizing: border-box;
+      padding: 5px;
+      border: 1px solid #ddd;
+    }
+    .box-flex > p {
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      background-color: #2b85e4;
+      color: #fff;
+      text-align: center;
+      margin:  0 5px 5px 0;
+    }
+    .panel-collapse b:not(:first-child) {
+      display: block;
+      margin-top: 25px;
+    }
+    #box4 > p:not(:last-child), #box5 > p:not(:last-child) {
+      margin-bottom: 5px;
+    }
+    .panel-collapse {
+      padding: 10px;
+      box-sizing: border-box;
+    }
+  </style>
+  <script>
+    Number.prototype.random = function (_max, _min) {
+      var max = (!isNaN(_max) ? parseInt(_max) : 10)
+      var min = (!isNaN(_min) ? parseInt(_min) : 0)
+      var dis = max - min
+      return (Math.floor(Math.random() * (dis + 1)) + min)
+    }
+    window.onload = function () {
+      var waitAppendBoxs = document.querySelectorAll('.box-append')
+      for (let i = 0; i < waitAppendBoxs.length; i++) {
+        let boxItem = waitAppendBoxs[i]
+        let appendCount = 10
+        for (let cssIdx = 0; cssIdx < boxItem.classList.length;cssIdx++) {
+          var curCssName = boxItem.classList[cssIdx]
+          if (/^box-append-\d+$/.test(curCssName)) {
+            appendCount = parseInt(curCssName.match(/\d+/)[0])
+          }
+        }
+        var isRandomWidth = boxItem.classList.value.indexOf('box-append-random-width') > -1
+        for (let j = 1; j <= appendCount; j++) {
+          let _p = document.createElement('p')
+          _p.innerText = j.toString()
+          if (isRandomWidth) {
+            _p.style.width = (0).random(120, 20) + 'px'
+          }
+          boxItem.append(_p)
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2><code>display: flex;</code></h2>
+
+  <h3>Container属性</h3>
+  <div class="panel-group" id="flexContainer" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <!-- begin direction -->
+      <div class="panel-heading" role="tab" id="head_Direction">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#flexContainer"
+            href="#collapse_flex_direction" aria-expanded="false" aria-controls="collapse_flex_direction">flex-direction</a>
+        </h4>
+      </div>
+      <div id="collapse_flex_direction" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="head_Direction">
+        <b>row</b>
+        <p>主轴为水平方向，起点在左端。</p>
+        <div class="box-flex box-append" id="box2" style="flex-direction: row;"></div>
+        <b>row-reverse</b>
+        <p>主轴为水平方向，起点在右端。</p>
+        <div class="box-flex box-append" id="box3" style="flex-direction: row-reverse;"></div>
+        <b>column</b>
+        <p>主轴为垂直方向，起点在上沿。</p>
+        <div class="box-flex box-append" id="box4" style="flex-direction: column;"></div>
+        <b>column-reverse</b>
+        <p>主轴为垂直方向，起点在下沿。</p>
+        <div class="box-flex box-append" id="box5" style="flex-direction: column-reverse;"></div>
+      </div>
+      <!-- begin wrap-->
+      <div class="panel-heading" role="tab" id="head_Wrap">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#flexContainer"
+            href="#collapse_flex_wrap" aria-expanded="false" aria-controls="collapse_flex_wrap">flex-wrap</a>
+        </h4>
+      </div>
+      <div id="collapse_flex_wrap" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="head_Wrap">
+        <b>nowrap</b>
+        <p>不换行。</p>
+        <div class="box-flex box-append box-append-80" style="flex-wrap: nowrap;"></div>
+        <b>wrap</b>
+        <p>换行，在第一行的上方。</p>
+        <div class="box-flex box-append box-append-80" style="flex-wrap: wrap;"></div>
+        <b>wrap-reverse</b>
+        <p>换行，在第一行的下方。</p>
+        <div class="box-flex box-append box-append-80" style="flex-wrap: wrap-reverse;"></div>
+      </div>
+      <!-- begin flow -->
+      <div class="panel-heading" role="tab" id="head_flow">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#flexContainer"
+            href="#collapse_flex_flow" aria-expanded="false" aria-controls="collapse_flex_flow">flex-flow</a>
+        </h4>
+      </div>
+      <div id="collapse_flex_flow" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="head_flow">
+        <p>flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;</p>
+      </div>
+      <!-- begin justify-content -->
+      <div class="panel-heading" role="tab" id="head_justify_content">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#flexContainer"
+            href="#collapse_flex_justify_content" aria-expanded="false" aria-controls="collapse_flex_justify_content">justify-content</a>
+        </h4>
+      </div>
+      <div id="collapse_flex_justify_content" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="head_justify_content">
+        <b>flex-start</b>
+        <p>左对齐。</p>
+        <div class="box-flex" style="justify-content: flex-start;">
+          <p style="width: 50px;">1</p>
+          <p style="width: 30px;">2</p>
+          <p style="width: 80px;">3</p>
+        </div>
+        <b>flex-end</b>
+        <p>右对齐。</p>
+        <div class="box-flex" style="justify-content: flex-end;">
+          <p style="width: 50px;">1</p>
+          <p style="width: 30px;">2</p>
+          <p style="width: 80px;">3</p>
+        </div>
+        <b>center</b>
+        <p>居中。</p>
+        <div class="box-flex" style="justify-content: center;">
+          <p style="width: 50px;">1</p>
+          <p style="width: 30px;">2</p>
+          <p style="width: 80px;">3</p>
+        </div>
+        <b>space-between</b>
+        <p>两端对齐，项目之间的间隔都相等。</p>
+        <div class="box-flex" style="justify-content: space-between;">
+          <p style="width: 50px;">1</p>
+          <p style="width: 30px;">2</p>
+          <p style="width: 80px;">3</p>
+        </div>
+        <b>space-around</b>
+        <p>每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。</p>
+        <div class="box-flex" style="justify-content: space-around;">
+          <p style="width: 50px;">1</p>
+          <p style="width: 30px;">2</p>
+          <p style="width: 80px;">3</p>
+        </div>
+      </div>
+      <!-- begin align-items -->
+      <div class="panel-heading" role="tab" id="head_align_items">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#flexContainer"
+            href="#collapse_flex_align_items" aria-expanded="false" aria-controls="collapse_flex_align_items">align-items</a>
+        </h4>
+      </div>
+      <div id="collapse_flex_align_items" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="head_align_items">
+        <b>flex-start</b>
+        <p>交叉轴的起点对齐。</p>
+        <div class="box-flex" style="align-items: flex-start;height: 120px;">
+          <p style="height: 50px;">1</p>
+          <p style="height: 30px;">2</p>
+          <p style="height: 80px;">3</p>
+        </div>
+        <b>flex-end</b>
+        <p>交叉轴的终点对齐。</p>
+        <div class="box-flex" style="align-items: flex-end;height: 120px;">
+          <p style="height: 50px;">1</p>
+          <p style="height: 30px;">2</p>
+          <p style="height: 80px;">3</p>
+        </div>
+        <b>center</b>
+        <p>交叉轴的中点对齐。</p>
+        <div class="box-flex" style="align-items: center;height: 120px;">
+          <p style="height: 50px;">1</p>
+          <p style="height: 30px;">2</p>
+          <p style="height: 80px;">3</p>
+        </div>
+        <b>baseline</b>
+        <p>项目的第一行文字的基线对齐。</p>
+        <div class="box-flex" style="align-items: baseline;height: 120px;">
+          <p style="height: 50px;">1</p>
+          <p style="height: 30px;">2</p>
+          <p style="height: 80px;">3</p>
+        </div>
+        <b>stretch</b>
+        <p>如果项目为设置高度或者为auto，将占满整个容器的高度。</p>
+        <div class="box-flex" style="align-items: stretch;height: 120px;">
+          <p style="height: 50px;">1</p>
+          <p style="height: 30px;">2</p>
+          <p style="height: 80px;">3</p>
+          <p style="height: auto;">4(auto)</p>
+        </div>
+      </div>
+      <!-- begin align-content -->
+      <div class="panel-heading" role="tab" id="head_align_content">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#flexContainer"
+            href="#collapse_flex_align_content" aria-expanded="false" aria-controls="collapse_flex_align_content">align-content</a>
+        </h4>
+      </div>
+      <div id="collapse_flex_align_content" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="head_align_content">
+        <b>flex-start</b>
+        <p>交叉轴的起点对齐。</p>
+        <div class="box-flex" style="align-content: flex-start;flex-wrap: wrap; width: 300px; height: 200px;">
+          <p style="width: 20px;">1</p>
+          <p style="width: 40px;">2</p>
+          <p style="width: 55px;">3</p>
+          <p style="width: 20px;">4</p>
+          <p style="width: 90px;">5</p>
+          <p style="width: 60px;">6</p>
+          <p style="width: 10px;">7</p>
+        </div>
+        <b>flex-end</b>
+        <p>交叉轴的终点对齐。</p>
+        <div class="box-flex" style="align-content: flex-end;flex-wrap: wrap; width: 300px; height: 200px;">
+          <p style="width: 20px;">1</p>
+          <p style="width: 40px;">2</p>
+          <p style="width: 55px;">3</p>
+          <p style="width: 20px;">4</p>
+          <p style="width: 90px;">5</p>
+          <p style="width: 60px;">6</p>
+          <p style="width: 10px;">7</p>
+        </div>
+        <b>center</b>
+        <p>交叉轴的中点对齐。</p>
+        <div class="box-flex" style="align-content: center;flex-wrap: wrap; width: 300px; height: 200px;">
+          <p style="width: 20px;">1</p>
+          <p style="width: 40px;">2</p>
+          <p style="width: 55px;">3</p>
+          <p style="width: 20px;">4</p>
+          <p style="width: 90px;">5</p>
+          <p style="width: 60px;">6</p>
+          <p style="width: 10px;">7</p>
+        </div>
+        <b>stretch</b>
+        <p>与交叉轴两端对齐，轴线之间的间隔平均分布。</p>
+        <div class="box-flex" style="align-content: stretch;flex-wrap: wrap; width: 300px; height: 200px;">
+          <p style="width: 20px;">1</p>
+          <p style="width: 40px;">2</p>
+          <p style="width: 55px;">3</p>
+          <p style="width: 20px;">4</p>
+          <p style="width: 90px;">5</p>
+          <p style="width: 60px;">6</p>
+          <p style="width: 10px;">7</p>
+        </div>
+        <b>space-between</b>
+        <p>每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</p>
+        <div class="box-flex" style="align-content: space-between;flex-wrap: wrap; width: 300px; height: 200px;">
+          <p style="width: 20px;">1</p>
+          <p style="width: 40px;">2</p>
+          <p style="width: 55px;">3</p>
+          <p style="width: 20px;">4</p>
+          <p style="width: 90px;">5</p>
+          <p style="width: 60px;">6</p>
+          <p style="width: 10px;">7</p>
+        </div>
+        <b>space-around</b>
+        <p>轴线占满整个交叉轴。</p>
+        <div class="box-flex" style="align-content: space-around;flex-wrap: wrap; width: 300px; height: 200px;">
+          <p style="width: 20px;">1</p>
+          <p style="width: 40px;">2</p>
+          <p style="width: 55px;">3</p>
+          <p style="width: 20px;">4</p>
+          <p style="width: 90px;">5</p>
+          <p style="width: 60px;">6</p>
+          <p style="width: 10px;">7</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h3>Items属性</h3>
+  <div class="panel-group" id="itemsContainer" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <!-- begin order -->
+      <div class="panel-heading" role="tab" id="head_order">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#itemsContainer"
+            href="#collapse_order" aria-expanded="false" aria-controls="collapse_order">order</a>
+        </h4>
+      </div>
+      <div id="collapse_order" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="head_order">
+        <b>order</b>
+        <p>定义item的排列顺序。数值越小，排列越靠前，默认为0。</p>
+        <div class="box-flex">
+          <p style="order: 1;">1</p>
+          <p style="order: 3;">2</p>
+          <p style="order: 5;">3</p>
+          <p style="order: 7;">4</p>
+          <p style="order: 9;">5</p>
+          <p style="order: 2;">6</p>
+          <p style="order: 4;">7</p>
+          <p style="order: 6;">8</p>
+          <p style="order: 8;">9</p>
+          <p style="order: 10;">10</p>
+        </div>
+      </div>
+      <!-- begin grow -->
+      <div class="panel-heading" role="tab" id="head_grow">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#itemsContainer"
+            href="#collapse_grow" aria-expanded="false" aria-controls="collapse_grow">flex-grow</a>
+        </h4>
+      </div>
+      <div id="collapse_grow" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="head_grow">
+        <b>flex-grow</b>
+        <p>定义item的放大比例，默认为0，即如果存在剩余空间，也不放大。不为0，表示根据order值平分剩余空间。</p>
+        <div class="box-flex">
+          <p>0</p>
+          <p style="flex-grow: 1;">1</p>
+          <p style="flex-grow: 2;">2</p>
+          <p style="flex-grow: 3;">3</p>
+        </div>
+      </div>
+      <!-- begin shrink -->
+      <div class="panel-heading" role="tab" id="head_shrink">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#itemsContainer"
+            href="#collapse_shrink" aria-expanded="false" aria-controls="collapse_shrink">flex-shrink</a>
+        </h4>
+      </div>
+      <div id="collapse_shrink" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="head_shrink">
+        <b>flex-shrink</b>
+        <p>定义item的缩小比例，默认为1，即如果空间不足，该项目将缩小。</p>
+        <div class="box-flex" style="width: 300px;">
+          <p>0</p>
+          <p style="flex-shrink: 1;width: 120px;">1</p>
+          <p style="flex-shrink: 2;width: 120px;">2</p>
+          <p style="flex-shrink: 3;width: 120px;">3</p>
+        </div>
+      </div>
+      <!-- begin align-self -->
+      <div class="panel-heading" role="tab" id="head_align_self">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#itemsContainer"
+            href="#collapse_align_self" aria-expanded="false" aria-controls="collapse_align_self">align-self</a>
+        </h4>
+      </div>
+      <div id="collapse_align_self" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="head_align_self">
+        <b>flex-shrink</b>
+        <p>允许单个item有与其他项目不一样的对齐方式，可以覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p>
+        <div class="box-flex" style="width: 300px; align-items: flex-start;">
+          <p>0</p>
+          <p style="height: 40px;">1</p>
+          <p style="height: 60px;">2</p>
+          <p style="height: 30px; align-self: flex-end;">3</p>
+          <p style="height: 30px;">4</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
