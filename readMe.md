@@ -20,6 +20,12 @@
      
     使用canvas画出的loading，带动画效果。更新时间：2019/8/6
 
+ - [Google loader by pure CSS](https://david-shi-1989.github.io/MyCodeSnippet/src/component/modern-google-loader/index.html)
+ 
+    `src/component/modern-google-loader/index.html`
+     
+    使用css画的Google彩色旋转loader。更新时间：2020/2/18
+
 - Date.format
     
     `src/method/Date-format`
