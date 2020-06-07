@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas - Draw a clock</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    padding: 50px;
+    background-color: #f6f6f6;
+  }
+  #app {
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+  }
+</style>
+<body>
+  <div id="app">
+    <canvas id="canvas" width="600" height="600" style="border:1px solid #000000;"></canvas>
+  </div>
+  <script>
+    var canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d'),
+        FONT_HEIGHT = 15,
+        MARGIN = 35,
+        HAND_TRUNCATION = canvas.width / 25,
+        HOUR_HAND_TRUNCATION = canvas.width / 10,
+        NUMERAL_SPACING = 20,
+        RADIUS = canvas.width/ 2 - MARGIN,
+        HAND_RADIUS = RADIUS + NUMERAL_SPACING
+        CENTER_X = canvas.width / 2,
+        CENTER_Y = canvas.height / 2
+
+    function drawCircle () {
+      var t1 = Math.sin(Math.PI / 4) * RADIUS
+      var grd1 = context.createLinearGradient(CENTER_X - t1, CENTER_Y - t1, CENTER_X + t1, CENTER_Y + t1)
+      grd1.addColorStop(0, '#6a6967')
+      grd1.addColorStop(1, '#2b211f')
+      context.beginPath()
+      context.arc(canvas.width / 2, canvas.height / 2, RADIUS, 0, Math.PI * 2, true)
+      context.fillStyle = grd1
+      context.fill()
+
+      var innerRadius = (RADIUS * 0.9)
+      var t2 = Math.sin(Math.PI / 4) * innerRadius
+      var grd2 = context.createLinearGradient(CENTER_X - t2, CENTER_Y - t2, CENTER_X + t2, CENTER_Y + t2)
+      grd2.addColorStop(0, '#2a201e')
+      grd2.addColorStop(1, '#8d8e89')
+      context.beginPath()
+      context.arc(canvas.width / 2, canvas.height / 2, innerRadius, 0, Math.PI * 2, true)
+      context.fillStyle = grd2
+      context.fill()
+
+      context.beginPath()
+      context.arc(canvas.width / 2, canvas.height / 2, innerRadius * 0.95, 0, Math.PI * 2, true)
+      context.fillStyle = '#ffffff'
+      context.fill()
+    }
+
+    function drawTick () {
+      context.beginPath()
+      var centerPoint = {x: canvas.width / 2, y: canvas.height / 2}
+      var tickRadius = RADIUS * 0.9 * 0.95 * 0.93
+      for (var i = 0;i < 60; i++) {
+        curDeg = (2 * Math.PI / 60 * i)
+        var tickSize = {width: 2, height: 10}
+        if (i % 15 === 0) {
+          tickSize.width = 8
+          tickSize.height = 20
+        } else if (i % 5 === 0) {
+          tickSize.width = 5
+          tickSize.height = 15
+        }
+        var curPoint = {
+          x: centerPoint.x + tickRadius * Math.sin(curDeg),
+          y: centerPoint.y - tickRadius * Math.cos(curDeg)
+        }
+        drawRect(curPoint.x, curPoint.y, tickSize.width, tickSize.height, curDeg, '#000')
+      }
+    }
+
+    function drawRect (centerX, centerY, width, height, angle, fillStyle) {
+      context.save()
+      context.translate(centerX, centerY)
+      context.rotate(angle)
+      context.fillStyle = fillStyle
+      var x = width/2*-1, y = height/2*-1
+      context.fillRect(x, y, width, height)
+      context.restore()
+    }
+
+    function drawCenter () {
+      context.beginPath()
+      context.arc(canvas.width / 2, canvas.height / 2, 5, 0, Math.PI * 2, true)
+      context.fillStyle = '#ffffff'
+      context.fill()
+      context.strokeStyle = '#000000'
+      context.stroke()
+    }
+
+    function drawHourHand (hour) {
+      var angle = hour * 2 * Math.PI / 24
+      var bottomWidth = 15, // 梯形长底
+          topWidth = 6, // 梯形短底
+          totalLength = 140, // 秒针的长度
+          centerPercent = 0.8 // 中心点的百分比
+      context.save()
+      context.translate(CENTER_X, CENTER_Y)
+      context.rotate(angle)
+      context.beginPath()
+      let deg1 = Math.atan(((bottomWidth - topWidth) / 2) / (totalLength))
+      var point1 = {
+        x: (topWidth / 2) * -1,
+        y: (totalLength * centerPercent) * -1
+      },
+      point2 = {
+        x: point1.x + topWidth,
+        y: point1.y
+      },
+      point3 = {
+        x: point2.x + (bottomWidth-topWidth) / 2,
+        y: point2.y + totalLength
+      },
+      point4 = {
+        x: point3.x - bottomWidth,
+        y: point3.y
+      }
+
+      context.moveTo(point1.x, point1.y)
+      context.lineTo(point2.x, point2.y)
+      context.lineTo(point3.x, point3.y)
+      context.lineTo(point4.x, point4.y)
+      context.closePath()
+      var grd = context.createLinearGradient(point4.x, point1.y, point3.x, point2.y)
+      grd.addColorStop(0, '#666666')
+      grd.addColorStop(0.499, '#666666')
+      grd.addColorStop(0.501, '#000000')
+      grd.addColorStop(1, '#000000')
+      context.fillStyle = grd
+      context.fill()
+      context.restore()
+    }
+    function drawMinuteHand (minute) {
+      var angle = minute * 2 * Math.PI / 60
+      var bottomWidth = 15, // 梯形长底
+          topWidth = 6, // 梯形短底
+          totalLength = 200, // 秒针的长度
+          centerPercent = 0.8 // 中心点的百分比
+      context.save()
+      context.translate(CENTER_X, CENTER_Y)
+      context.rotate(angle)
+      context.beginPath()
+      let deg1 = Math.atan(((bottomWidth - topWidth) / 2) / (totalLength))
+      var point1 = {
+        x: (topWidth / 2) * -1,
+        y: (totalLength * centerPercent) * -1
+      },
+      point2 = {
+        x: point1.x + topWidth,
+        y: point1.y
+      },
+      point3 = {
+        x: point2.x + (bottomWidth-topWidth) / 2,
+        y: point2.y + totalLength
+      },
+      point4 = {
+        x: point3.x - bottomWidth,
+        y: point3.y
+      }
+
+      context.moveTo(point1.x, point1.y)
+      context.lineTo(point2.x, point2.y)
+      context.lineTo(point3.x, point3.y)
+      context.lineTo(point4.x, point4.y)
+      context.closePath()
+      var grd = context.createLinearGradient(point4.x, point1.y, point3.x, point2.y)
+      grd.addColorStop(0, '#666666')
+      grd.addColorStop(0.499, '#666666')
+      grd.addColorStop(0.501, '#000000')
+      grd.addColorStop(1, '#000000')
+      context.fillStyle = grd
+      context.fill()
+      context.restore()
+    }
+    function drawSecondHand (second) {
+      var angle = second * 2 * Math.PI / 60
+      var bottomWidth = 8, // 梯形长底
+          topWidth = 2, // 梯形短底
+          totalLength = 245, // 秒针的长度
+          centerPercent = 0.8 // 中心点的百分比
+      context.save()
+      context.translate(CENTER_X, CENTER_Y)
+      context.rotate(angle)
+      context.beginPath()
+      let deg1 = Math.atan(((bottomWidth - topWidth) / 2) / (totalLength))
+      var point1 = {
+        x: (topWidth / 2) * -1,
+        y: (totalLength * centerPercent) * -1
+      },
+      point2 = {
+        x: point1.x + topWidth,
+        y: point1.y
+      },
+      point3 = {
+        x: point2.x + (bottomWidth-topWidth) / 2,
+        y: point2.y + totalLength
+      },
+      point4 = {
+        x: point3.x - bottomWidth,
+        y: point3.y
+      }
+
+      context.moveTo(point1.x, point1.y)
+      context.lineTo(point2.x, point2.y)
+      context.lineTo(point3.x, point3.y)
+      context.lineTo(point4.x, point4.y)
+      context.closePath()
+      var grd = context.createLinearGradient(point4.x, point1.y, point3.x, point2.y)
+      grd.addColorStop(0, '#e12a2f')
+      grd.addColorStop(0.499, '#e12a2f')
+      grd.addColorStop(0.501, '#b72331')
+      grd.addColorStop(1, '#b72331')
+      context.fillStyle = grd
+      context.fill()
+
+      context.arc(0, point3.y, 8, 0, 2 * Math.PI)
+      context.fillStyle = '#b8292f'
+      context.fill()
+      context.restore()
+    }
+    
+
+    function drawHands () {
+      var date = new Date
+
+      drawHourHand(date.getHours())
+      drawMinuteHand(date.getMinutes())
+      drawSecondHand(date.getSeconds())
+    }
+
+    function drawNumerals () {
+      var numerals = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+          angle = 0,
+          numeralWidth = 0
+      numerals.forEach(function (numeral) {
+        angle = Math.PI / 6 * (numeral - 3)
+        numeralWidth = context.measureText(numeral).width
+        context.fillText(
+          numeral,
+          canvas.width / 2 + Math.cos(angle) * HAND_RADIUS - numeralWidth / 2,
+          canvas.height / 2 + Math.sin(angle) * HAND_RADIUS + FONT_HEIGHT / 3
+        )
+      })
+    }
+    function drawClock () {
+      context.clearRect(0, 0, canvas.width, canvas.height)
+      drawCircle()
+      drawTick()
+      drawHands()
+      drawCenter()
+    }
+
+    context.font = FONT_HEIGHT + 'px Arial'
+    drawClock()
+    loop = setInterval(drawClock, 1000)
+  </script>
+</body>
+</html>

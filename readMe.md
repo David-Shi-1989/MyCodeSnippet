@@ -26,6 +26,12 @@
      
     使用css画的Google彩色旋转loader。更新时间：2020/2/18
 
+ - [canvas clock](https://david-shi-1989.github.io/MyCodeSnippet/src/course/canvas/clock.html)
+ 
+    `src/course/canvas/clock.html`
+     
+    使用canvas画的精美时钟。更新时间：2020/6/7
+
 - Date.format
     
     `src/method/Date-format`
