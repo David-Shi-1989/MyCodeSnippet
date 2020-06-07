@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      padding: 30px 15px;
+    }
+    h3 {
+      margin:30px 0 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h2>填充</h2>
+  <h3>纯色填充</h3>
+  <canvas id="myCanvasBgColor" width="200" height="200" style="border:1px solid #000000;"></canvas>
+  <h3>径向渐变填充</h3>
+  <canvas id="myCanvasBgGradientColor" width="200" height="200" style="border:1px solid #000000;"></canvas>
+  <h3>放射/球状渐变填充</h3>
+  <canvas id="myCanvasBgRadialGradientColor" width="200" height="200" style="border:1px solid #000000;"></canvas>
+  <h3>图片填充</h3>
+  <h4>方法1</h4>
+  <canvas id="myCanvasBgImg" width="800" height="530" style="border:1px solid #000000;"></canvas>
+  <h4>方法2</h4>
+  <canvas id="myCanvasBgImg2" width="800" height="530" style="border:1px solid #000000;"></canvas>
+  <h3>视频</h3>
+  <video id="video1" controls width="270" autoplay>
+    <source src="https://www.w3school.com.cn/example/html5/mov_bbb.mp4" type='video/mp4'>
+    <source src="https://www.w3school.com.cn/example/html5/mov_bbb.ogg" type='video/ogg'>
+    <source src="https://www.w3school.com.cn/example/html5/mov_bbb.webm" type='video/webm'>
+  </video>
+  <canvas id="myCanvasBgVideo" width="280" height="145" style="border:1px solid #000000;"></canvas>
+  <h2>图形</h2>
+  <h3>直线</h3>
+  <canvas id="myCanvasLine" width="200" height="200" style="border:1px solid #000000;"></canvas>
+  <h3>圆形</h3>
+  <canvas id="myCanvasCircle" width="200" height="200" style="border:1px solid #000000;"></canvas>
+  <h3>圆弧</h3>
+  <canvas id="myCanvasArc" width="200" height="200" style="border:1px solid #000000;"></canvas>
+  <div><img src="https://www.runoob.com/images/img_the_scream.jpg" id="img_demo"></div>
+  <script>
+    function fillRect () {
+      var cvs = document.getElementById('myCanvasBgColor')
+      var ctx = cvs.getContext("2d")
+      ctx.fillStyle = "#FF0000"
+      ctx.fillRect(0, 0, 150, 75)
+    }
+    function fillGradientColor () {
+      var cvs = document.getElementById('myCanvasBgGradientColor')
+      var ctx = cvs.getContext("2d")
+      // 创建渐变1
+      var grd1 = ctx.createLinearGradient(0, 0, 100, 100);
+      grd1.addColorStop(0, 'red')
+      grd1.addColorStop(1, 'white')
+      // 创建渐变2
+      var grd2 = ctx.createLinearGradient(100, 100, 200, 100);
+      grd2.addColorStop(0, 'red')
+      grd2.addColorStop(1, 'white')
+
+      // 填充渐变1
+      ctx.fillStyle = grd1
+      ctx.fillRect(0, 0, 100, 100)
+      // 填充渐变2
+      ctx.fillStyle = grd2
+      ctx.fillRect(100, 100, 200, 200)
+    }
+    function fillRadialGradientColor () {
+      var cvs = document.getElementById('myCanvasBgRadialGradientColor')
+      var ctx = cvs.getContext("2d")
+      // 创建渐变
+      var grd = ctx.createRadialGradient(100, 100, 0, 100, 100, 90);
+      grd.addColorStop(0, 'red')
+      grd.addColorStop(1, 'green')
+
+      // 填充渐变
+      ctx.fillStyle = grd
+      ctx.fillRect(0, 0, 200, 200)
+    }
+    function fillImg () {
+      var cvs = document.getElementById('myCanvasBgImg')
+      var ctx = cvs.getContext("2d")
+      var img = new Image()
+      img.src = 'https://visualhunt.com/photos/1/milky-way-over-fence.jpg?s=l'
+      img.onload = function () {
+        var pattern = ctx.createPattern(img, "no-repeat")
+        ctx.fillStyle = pattern
+        ctx.fillRect(10, 10, 780, 510)
+      }
+    }
+    function fillImg2 () {
+      document.getElementById('img_demo').onload = function () {
+        var cvs = document.getElementById('myCanvasBgImg2')
+        var ctx = cvs.getContext("2d")
+        ctx.drawImage(document.getElementById('img_demo'), 10, 10)
+      }
+    }
+    function fillVideo () {
+      var video = document.getElementById("video1");
+      var cvs = document.getElementById("myCanvasBgVideo");
+      ctx = cvs.getContext('2d');
+      video.addEventListener('play', function() {
+        var i = window.setInterval( function() {
+          ctx.drawImage(video, 5, 5, 270, 135)
+        }, 10)
+      },false)
+      video.addEventListener('pause',function() {
+        window.clearInterval(i)
+      }, false)
+      video.addEventListener('ended',function() {
+        clearInterval(i)
+      }, false)
+    }
+    function drawLine () {
+      var cvs = document.getElementById('myCanvasLine')
+      var ctx = cvs.getContext("2d")
+      ctx.moveTo(10, 10)
+      ctx.lineTo(120, 150)
+      ctx.strokeStyle = '#FF0000'
+      ctx.stroke()
+    }
+    function drawCircle () {
+      var cvs = document.getElementById('myCanvasCircle')
+      var ctx = cvs.getContext("2d")
+      ctx.beginPath()
+      ctx.arc(100, 100, 30, 0, 2 * Math.PI)
+      ctx.strokeStyle = '#FF0000'
+      ctx.stroke()
+    }
+    function drawArc () {
+      var cvs = document.getElementById('myCanvasArc')
+      var ctx = cvs.getContext("2d")
+      ctx.beginPath()
+      ctx.arc(100, 100, 30, 0, 0.5 * Math.PI)
+      ctx.strokeStyle = '#FF0000'
+      ctx.stroke()
+    }
+    fillRect()
+    fillGradientColor()
+    fillRadialGradientColor()
+    fillImg()
+    fillImg2()
+    fillVideo()
+    drawLine()
+    drawCircle()
+    drawArc()
+  </script>
+</body>
+</html>
