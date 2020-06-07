@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Canvas demo</title>
   <style>
     * {
       padding: 0;
@@ -30,6 +30,8 @@
   <canvas id="myCanvasBgImg" width="800" height="530" style="border:1px solid #000000;"></canvas>
   <h4>方法2</h4>
   <canvas id="myCanvasBgImg2" width="800" height="530" style="border:1px solid #000000;"></canvas>
+  <h3>文字</h3>
+  <canvas id="myCanvasText" width="800" height="200" style="border:1px solid #000000;"></canvas>
   <h3>视频</h3>
   <video id="video1" controls width="270" autoplay>
     <source src="https://www.w3school.com.cn/example/html5/mov_bbb.mp4" type='video/mp4'>
@@ -44,7 +46,7 @@
   <canvas id="myCanvasCircle" width="200" height="200" style="border:1px solid #000000;"></canvas>
   <h3>圆弧</h3>
   <canvas id="myCanvasArc" width="200" height="200" style="border:1px solid #000000;"></canvas>
-  <div><img src="https://www.runoob.com/images/img_the_scream.jpg" id="img_demo"></div>
+  <div style="visibility: hidden;"><img src="https://www.runoob.com/images/img_the_scream.jpg" id="img_demo"></div>
   <script>
     function fillRect () {
       var cvs = document.getElementById('myCanvasBgColor')
@@ -93,6 +95,15 @@
         ctx.fillStyle = pattern
         ctx.fillRect(10, 10, 780, 510)
       }
+    }
+    function fillText () {
+      var cvs = document.getElementById('myCanvasText')
+      var ctx = cvs.getContext("2d")
+      ctx.font = '25pt Arial'
+      ctx.fillStyle = 'cornflowerblue'
+      ctx.strokeStyle = 'blue'
+      ctx.fillText('Hello World!', 20, 50)
+      ctx.strokeText('Hello World!', 20, 50)
     }
     function fillImg2 () {
       document.getElementById('img_demo').onload = function () {
@@ -145,6 +156,7 @@
     fillGradientColor()
     fillRadialGradientColor()
     fillImg()
+    fillText()
     fillImg2()
     fillVideo()
     drawLine()
