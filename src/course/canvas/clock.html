@@ -28,13 +28,11 @@
   <script>
     var canvas = document.getElementById('canvas'),
         context = canvas.getContext('2d'),
-        FONT_HEIGHT = 15,
+        FONT_HEIGHT = 20,
         MARGIN = 35,
-        HAND_TRUNCATION = canvas.width / 25,
-        HOUR_HAND_TRUNCATION = canvas.width / 10,
-        NUMERAL_SPACING = 20,
         RADIUS = canvas.width/ 2 - MARGIN,
-        HAND_RADIUS = RADIUS + NUMERAL_SPACING
+        NUMERAL_SPACING = 20,
+        HAND_RADIUS = RADIUS + NUMERAL_SPACING,
         CENTER_X = canvas.width / 2,
         CENTER_Y = canvas.height / 2
 
@@ -185,20 +183,29 @@
     function drawNumerals () {
       var numerals = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
           angle = 0,
-          numeralWidth = 0
+          numeralWidth = 0,
+          curRadius = RADIUS * 0.68
+      context.font = '12px Arial'
+      context.fillStyle = '#555555'
       numerals.forEach(function (numeral) {
         angle = Math.PI / 6 * (numeral - 3)
         numeralWidth = context.measureText(numeral).width
+        if (numeral % 3 === 0) {
+          context.font = '22px Arial'
+        } else {
+          context.font = '12px Arial'
+        }
         context.fillText(
           numeral,
-          canvas.width / 2 + Math.cos(angle) * HAND_RADIUS - numeralWidth / 2,
-          canvas.height / 2 + Math.sin(angle) * HAND_RADIUS + FONT_HEIGHT / 3
+          canvas.width / 2 + Math.cos(angle) * curRadius - numeralWidth / 2,
+          canvas.height / 2 + Math.sin(angle) * curRadius + FONT_HEIGHT / 3
         )
       })
     }
     function drawClock () {
       context.clearRect(0, 0, canvas.width, canvas.height)
       drawCircle()
+      drawNumerals()
       drawTick()
       drawHands()
       drawCenter()
