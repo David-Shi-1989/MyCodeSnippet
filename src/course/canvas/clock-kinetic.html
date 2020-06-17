@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas Clock based on Kinetic.js</title>
+  <script src="./clock/kinetic.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      padding: 50px;
+      background-color: #f6f6f6;
+    }
+    #app {
+      width: 600px;
+      height: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    var WIDTH = 600, HEIGHT = 600, MARGIN = 35, RADIUS = HEIGHT / 2 - MARGIN
+    var CENTER_X = WIDTH / 2, CENTER_Y = HEIGHT / 2
+    window.onload = function () {
+      var stage = new Kinetic.Stage({
+        container: 'app',
+        width: WIDTH,
+        height: HEIGHT
+      })
+
+      var layerCircle = drawCircle()
+      var layerTick = drawTick()
+      stage.add(layerCircle)
+      stage.add(layerTick)
+    }
+    function drawCircle () {
+      var layer = new Kinetic.Layer()
+      var circleGroup = new Kinetic.Group()
+      var t1 = Math.sin(Math.PI / 4) * RADIUS
+      var circleOutter = new Kinetic.Circle({
+        x: CENTER_X,
+        y: CENTER_Y,
+        radius: RADIUS,
+        fillPriority: 'linear-gradient',
+        fillLinearGradientStartPoint: {x: t1 * -1, y: t1 * -1},
+        fillLinearGradientEndPoint: {x: t1, y: t1},
+        fillLinearGradientColorStops: [0, '#6a6967', 1, '#2b211f']
+      })
+      var innerRadius = RADIUS * 0.9
+      var t2 = Math.sin(Math.PI / 4) * innerRadius
+      var circleInner = new Kinetic.Circle({
+        x: CENTER_X,
+        y: CENTER_Y,
+        radius: innerRadius,
+        fillPriority: 'linear-gradient',
+        fillLinearGradientStartPoint: {x: t2 * -1, y: t2 * -1},
+        fillLinearGradientEndPoint: {x: t2, y: t2},
+        fillLinearGradientColorStops: [0, '#2a201e', 1, '#8d8e89']
+      })
+      var bgRadius = innerRadius * 0.95
+      var circleBg = new Kinetic.Circle({
+        x: CENTER_X,
+        y: CENTER_Y,
+        radius: bgRadius,
+        fill: '#ffffff'
+      })
+      circleGroup.add(circleOutter)
+      circleGroup.add(circleInner)
+      circleGroup.add(circleBg)
+      layer.add(circleGroup)
+      return layer
+    }
+
+    function drawTick () {
+      var layer = new Kinetic.Layer()
+      var rect1 = drawRect()
+      layer.add(rect1)
+      return layer
+    }
+    function drawRect () {
+      var rect = new Kinetic.Rect({
+        x: CENTER_X,
+        y: CENTER_Y,
+        width: 100,
+        height: 50,
+        fill: 'red'
+      })
+      var transform1 = new Kinetic.Transform()
+      transform1.translate(CENTER_X, CENTER_Y)
+      transform1.rotate(Math.PI / 4)
+      rect._setTransform(transform1)
+      return rect
+    }
+  </script>
+</body>
+</html>
