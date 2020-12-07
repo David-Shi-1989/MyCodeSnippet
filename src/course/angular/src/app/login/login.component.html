@@ -1,0 +1,15 @@
+<div class="example-login-wrap">
+  <p>欢迎登录</p>
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input [(ngModel)]="username" name="username" matInput placeholder="用户名"/>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input [(ngModel)]="password" name="password" matInput type="password" placeholder="密码">
+    </mat-form-field>
+  </form>
+  <div class="example-btns">
+    <button mat-flat-button (click)="onLoginClick()">登录</button>
+    <button mat-stroked-button (click)="onRegisterClick()">注册</button>
+  </div>
+</div>
