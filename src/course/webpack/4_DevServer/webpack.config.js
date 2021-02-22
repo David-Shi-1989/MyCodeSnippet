@@ -1,28 +1,31 @@
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const isDevMode = process.env.NODE_ENV !== 'production'
 module.exports = {
   mode: 'development',
+  entry: path.resolve(__dirname, 'main.js'),
   devServer: {
     open: true
   },
-  entry: path.resolve(__dirname, 'main.js'),
   output: {
-    filename: 'bundle.js',
+    filename: 'bundle.[hash:8].js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
     rules: [
       {
-        test: /\.css$/,
-        loaders: ExtractTextPlugin.extract({
-          use: ['css-loader']
-        })
+        test: /\.css$/i,
+        use: [ MiniCssExtractPlugin.loader, 'css-loader' ],
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin({
-      filename: `style.css`
+    new MiniCssExtractPlugin({
+      filename: isDevMode ? `[name].css` : `[name].[contenthash].css`
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'index.html')
     })
   ]
 }

@@ -1,0 +1,53 @@
+{
+    "title": "前端工程师开发笔记",
+    "description": "记录个人在开发过程中遇到的问题及学习",
+    "author": "Lyman Shi",
+    "output.name": "site",
+    "language": "zh-hans",
+    "gitbook": "3.2.3",
+    "root": ".",
+    "styles": {
+        "website": "styles/website.css"
+    },
+    "plugins": [
+        "-lunr",
+        "-search",
+        "-highlight",
+        "-livereload",
+        "-sharing",
+        "search-pro",
+        "popup",
+        "prism",
+        "prism-themes",
+        "advanced-emoji",
+        "splitter",
+        "tbfed-pagefooter",
+        "favicon",
+        "toggle-chapters",
+        "code",
+        "theme-comscore"
+    ],
+    "pluginsConfig": {
+        "theme-default": {
+            "showLevel": true
+        },
+        "search-pro": {
+            "cutWordLib": "nodejieba",
+            "defineWord": [
+                "Gitbook Use"
+            ]
+        },
+        "tbfed-pagefooter": {
+            "copyright": "Copyright © shiwang.wang 2021",
+            "modify_label": "该文件修订时间：",
+            "modify_format": "YYYY-MM-DD HH:mm:ss"
+        },
+        "favicon": {
+            "shortcut": "favicon.ico",
+            "bookmark": "favicon.ico"
+        },
+        "code": {
+            "copyButtons": true
+        }
+    }
+}
