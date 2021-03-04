@@ -111,4 +111,3 @@ webpack --config webpack.config.js
   ![image-20210222102737336](https://raw.githubusercontent.com/David-Shi-1989/img-bed/master/image-20210222102737336.png)
 
   除了entry里生成chunks，还有其他，推荐阅读[《Webpack 理解 Chunk》](https://juejin.cn/post/6844903889393680392)。
-

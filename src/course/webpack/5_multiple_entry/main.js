@@ -1,4 +1,2 @@
-const show = require('./show.js')
-const jsCookie = require('jscookie')
+import show from './show.js'
 show('index')
-jsCookie.set({name: 'name', value: 'index'})

@@ -8,3 +8,4 @@
     * [html-webpack-plugin](./webpack/4_html-webpack-plugin.md)
     * [devServer](./webpack/5_devServer.md)
     * [Multiple Entry](./webpack/6_multipleEntry.md)
+    * [splitChunks](./webpack/7_splitChunks.md)

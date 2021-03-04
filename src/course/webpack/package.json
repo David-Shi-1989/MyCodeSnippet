@@ -12,7 +12,8 @@
     "PluginHtml": "webpack --config ./3_Plugin_HtmlExtract/webpack.config.js",
     "DevServer": "cd 4_DevServer && webpack-dev-server --watch --hot --devtool source-map",
     "MultipleEntry": "cd 5_multiple_entry && webpack --config ./webpack.config.js",
-    "MultipleEntryDS": "cd 5_multiple_entry && webpack-dev-server --watch --hot --devtool source-map"
+    "MultipleEntryDS": "cd 5_multiple_entry && webpack-dev-server --watch --hot --devtool source-map",
+    "SplitChunks": "cd 6_spiltChunks && webpack --config ./webpack.config.js"
   },
   "author": "",
   "license": "ISC",
