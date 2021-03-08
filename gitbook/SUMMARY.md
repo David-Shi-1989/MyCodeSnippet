@@ -9,3 +9,7 @@
     * [devServer](./webpack/5_devServer.md)
     * [Multiple Entry](./webpack/6_multipleEntry.md)
     * [splitChunks](./webpack/7_splitChunks.md)
+* [JavaScipt记录](./js/README.md)
+    * [代码片段](./js/code-snippets.md)
+* [SASS & LESS记录](./less-sass/README.md)
+    * [变量转义](./less-sass/variable-trans.md)
