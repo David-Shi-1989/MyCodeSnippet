@@ -113,7 +113,7 @@ module.exports = {
 
 问题原因是在`HtmlWebpackPlugin`中`chunks`的配置！
 
-由于之前的demo没有做代码拆分，所以一个entry就是一个chunk，没有问题。现在代码拆分为多个chunk了，所以在``HtmlWebpackPlugin.chunks`的配置也要指定公共代码chunk。
+由于之前的demo没有做代码拆分，所以一个entry就是一个chunk，没有问题。现在代码拆分为多个chunk了，所以在`HtmlWebpackPlugin.chunks`的配置也要指定公共代码chunk。
 
 修改代码如下：
 
