@@ -1,3 +1,3 @@
-require('./style.css')
-const show = require('./show')
+import './style.css'
+import {show} from './show'
 show('Webpack')

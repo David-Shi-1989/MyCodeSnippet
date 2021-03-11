@@ -13,7 +13,8 @@
     "DevServer": "cd 4_DevServer && webpack-dev-server --watch --hot --devtool source-map",
     "MultipleEntry": "cd 5_multiple_entry && webpack --config ./webpack.config.js",
     "MultipleEntryDS": "cd 5_multiple_entry && webpack-dev-server --watch --hot --devtool source-map",
-    "SplitChunks": "cd 6_spiltChunks && webpack --config ./webpack.config.js"
+    "SplitChunks": "cd 6_spiltChunks && webpack --config ./webpack.config.js",
+    "loader": "cd 7_loader && webpack-dev-server --watch --hot --devtool source-map"
   },
   "author": "",
   "license": "ISC",
