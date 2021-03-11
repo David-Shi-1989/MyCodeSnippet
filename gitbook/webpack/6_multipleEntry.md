@@ -26,7 +26,7 @@ Webpack支持多入口文件的打包。多入口意味着入口文件也是多�
 `show.js`
 
 ```javascript
-function show (content) {
+export function show (content) {
   document.getElementById('app').innerText = 'Hellow,' + content
 }
 module.exports = show
@@ -35,14 +35,14 @@ module.exports = show
 `main.js`
 
 ```javascript
-const show = require('./show.js')
+import {show} from './show.js'
 show('index')
 ```
 
 `login.js`
 
 ```javascript
-const show = require('./show.js')
+import {show} from './show.js'
 show('login')
 ```
 

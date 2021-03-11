@@ -4,6 +4,8 @@
 
 >Accessibility，通常缩写为 **A11Y** ，这缩写取的是首字母 + 中间字母长度 + 结尾字母，译为 **“可访问性”**。这是一种让尽可能多的人访问我们所开发的网站的技术概念，通过这个概念，让互联网访问公平变得可能。
 
+![ally](https://raw.githubusercontent.com/David-Shi-1989/img-bed/master/ally.png)
+
 ## CheckList
 
 ### 为任何非文本内容提供文本替代项

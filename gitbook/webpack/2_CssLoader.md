@@ -18,7 +18,7 @@
 
 ```javascript
 require('./style.css')
-const show = require('./show.js')
+import {show} from './show.js'
 show('Webpack')
 ```
 

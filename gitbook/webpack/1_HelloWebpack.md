@@ -25,14 +25,14 @@
 `main.js`
 
 ```javascript
-const show = require('./show.js')
+import {show} from './show.js'
 show('Webpack')
 ```
 
 `show.js`
 
 ```javascript
-function show (content) {
+export function show (content) {
   document.getElementById('app').innerText = 'Hellow,' + content
 }
 module.exports = show

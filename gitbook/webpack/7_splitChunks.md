@@ -13,7 +13,7 @@ npm i -d jscookie
 修改`main.js`
 
 ```javascript
-const show = require('./show.js')
+import {show} from './show.js'
 const jsCookie = require('jscookie')
 show('index')
 jsCookie.set({name: 'name', value: 'index'})
@@ -22,7 +22,7 @@ jsCookie.set({name: 'name', value: 'index'})
 修改`login.js`
 
 ```javascript
-const show = require('./show.js')
+import {show} from './show.js'
 const jsCookie = require('jscookie')
 show('login')
 jsCookie.set({name: 'name', value: 'login'})

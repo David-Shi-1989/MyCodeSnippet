@@ -10,6 +10,7 @@
     * [devServer](./webpack/5_devServer.md)
     * [Multiple Entry](./webpack/6_multipleEntry.md)
     * [splitChunks](./webpack/7_splitChunks.md)
+    * [Loader](./webpack/8_loader.md)
     
 * [JavaScipt记录](./js/README.md)
   
