@@ -1,5 +1,6 @@
 const path = require('path')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   mode: 'development',
@@ -11,6 +12,15 @@ module.exports = {
     login: path.resolve(__dirname, 'login.js')
   },
   devtool: 'source-map',
+  module: {
+    rules: [
+      {
+        test: /\.less$/,
+        exclude: /(node_modules)/,
+        loader: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
+      }
+    ]
+  },
   optimization: {
     splitChunks: {
       chunks: 'all',
@@ -42,6 +52,9 @@ module.exports = {
       template: path.resolve(__dirname, 'index.html'),
       title: 'login',
       chunks: ['login', 'chunk-common', 'chunk-vendor']
+    }),
+    new MiniCssExtractPlugin({
+      filename: `[name].[contenthash].css`
     }),
     new CleanWebpackPlugin()
   ]
