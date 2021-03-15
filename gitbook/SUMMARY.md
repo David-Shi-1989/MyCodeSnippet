@@ -20,5 +20,6 @@
   * [变量转义](./less-sass/variable-trans.md)
   
 * [其他](./other/README.md)
-  * [Accessbility](./other/accessbility.md)
+  * [Accessbility](./other/A11Y/README.md)
+    * [Landmarks](./other/A11Y/landmarks.md)
 
