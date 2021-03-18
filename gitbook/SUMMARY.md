@@ -13,8 +13,7 @@
     * [Loader](./webpack/8_loader.md)
     
 * [JavaScipt记录](./js/README.md)
-  
-    * [代码片段](./js/code-snippets.md)
+  * [代码片段](./js/code-snippets.md)
     
 * [SASS & LESS记录](./less-sass/README.md)
   * [变量转义](./less-sass/variable-trans.md)
@@ -22,4 +21,4 @@
 * [其他](./other/README.md)
   * [Accessbility](./other/A11Y/README.md)
     * [Landmarks](./other/A11Y/landmarks.md)
-
+  * [vue.config.js中chainWebpack支持异步数](./webpack/async-in-vue-cli3.md)
