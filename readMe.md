@@ -8,32 +8,38 @@
     源码文件夹，主要通过html，增强交互。如需查看源码，可通过F12打开查看。
 
 ## DemoList ##
- - [PortRange Check](https://david-shi-1989.github.io/MyCodeSnippet/src/algorithm/port-check/index.html)
+ - [sticky table head](https://david-shi-1989.github.io/MyCodeSnippet/src/component/css-position-sticky/index.html)
+   
+    `src\component\css-position-sticky\index.html`
     
+    使用`position:sticky`纯css实现表格吸顶效果。更新时间：2020/5/6
+
+ - [PortRange Check](https://david-shi-1989.github.io/MyCodeSnippet/src/algorithm/port-check/index.html)
+   
     `src/algorithm/port-check`
     
      对用户输入的端口段检查，合并，排序后输出。更新时间：2019/8/6
 
  - [canvas loading](https://david-shi-1989.github.io/MyCodeSnippet/src/component/canvas-loading-1/index.html)
- 
+
     `src/loading/canvas-loading-1`
-     
+    
     使用canvas画出的loading，带动画效果。更新时间：2019/8/6
 
  - [Google loader by pure CSS](https://david-shi-1989.github.io/MyCodeSnippet/src/component/modern-google-loader/index.html)
- 
+
     `src/component/modern-google-loader/index.html`
-     
+    
     使用css画的Google彩色旋转loader。更新时间：2020/2/18
 
  - [canvas clock](https://david-shi-1989.github.io/MyCodeSnippet/src/course/canvas/clock.html)
- 
+
     `src/course/canvas/clock.html`
-     
+    
     使用canvas画的精美时钟。更新时间：2020/6/7
 
 - Date.format
-    
+  
     `src/method/Date-format`
 
      对Date对象原型的补充，增加format方法。更新时间：2019/8/6
