@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="../../../assets/vendor/jquery.min.js"></script>
+  <title>Display: flex</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+    #app {
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding: 20px;
+      --item-size: 30px;
+    }
+    .container {
+      width: 100%;
+      min-height: 55px;
+      padding: 20px 10px 10px 5px;
+      background-color: #f2f2f2;
+      border: 1px solid #d2d2d2;
+      margin-bottom: 15px;
+      display: flex;
+      position: relative;
+      display: none;
+    }
+    .container .box {
+      width: var(--item-size);
+      height: var(--item-size);
+      line-height: var(--item-size);
+      text-align: center;
+      color: #fff;
+      background-color: #2b85e4;
+      border-radius: 2px;
+      font-size: 14px;
+    }
+    .box.no-margin-bottom {
+      margin-bottom: 0 !important;
+    }
+    .container .box:not(:last-child) {
+      margin-right: 10px;
+      margin-bottom: 5px;
+    }
+    .container[data-id$="-reverse"] .box:not(:first-child) {
+      margin-right: 10px;
+      margin-bottom: 5px;
+    }
+
+    .container .css-water-mark {
+      position: absolute;
+      font-size: 12px;
+      color: #777;
+      opacity: .5;
+      top: 0;
+      left: 5px;
+    }
+    /******* individual style *******/
+    /** flex-direction **/
+    .container[data-id="flex-direction-row"] {
+      flex-direction: row;
+    }
+    .container[data-id="flex-direction-row-reverse"] {
+      flex-direction: row-reverse;
+    }
+    .container[data-id="flex-direction-column"] {
+      flex-direction: column;
+    }
+    .container[data-id="flex-direction-column-reverse"] {
+      flex-direction: column-reverse;
+    }
+    /** flex-wrap **/
+    .container[data-id="flex-wrap-nowrap"] {
+      flex-wrap: nowrap;
+    }
+    .container[data-id="flex-wrap-wrap"] {
+      flex-wrap: wrap;
+    }
+    .container[data-id="flex-wrap-wrap-reverse"] {
+      flex-wrap: wrap-reverse;
+    }
+    /** justify-content **/
+    .container[data-id="justify-content-flex-start"] {
+      justify-content: flex-start;
+    }
+    .container[data-id="justify-content-flex-end"] {
+      justify-content: flex-end;
+    }
+    .container[data-id="justify-content-center"] {
+      justify-content: center;
+    }
+    .container[data-id="justify-content-space-between"] {
+      justify-content: space-between;
+    }
+    .container[data-id="justify-content-space-around"] {
+      justify-content: space-around;
+    }
+    /** align-items **/
+    .container[data-id="align-items-flex-start"] {
+      align-items: flex-start;
+    }
+    .container[data-id="align-items-flex-end"] {
+      align-items: flex-end;
+    }
+    .container[data-id="align-items-center"] {
+      align-items: center;
+    }
+    .container[data-id="align-items-baseline"] {
+      align-items: baseline;
+    }
+    .container[data-id="align-items-stretch"] {
+      align-items: stretch;
+    }
+    /** align-content **/
+    .container[data-id^="align-content-"] {
+      flex-wrap: wrap;
+      width: 250px;
+      height: 300px;
+    }
+    .container[data-id="align-content-flex-start"] {
+      align-content: flex-start;
+    }
+    .container[data-id="align-content-flex-end"] {
+      align-content: flex-end;
+    }
+    .container[data-id="align-content-center"] {
+      align-content: center;
+    }
+    .container[data-id="align-content-stretch"] {
+      align-content: stretch;
+    }
+    .container[data-id="align-content-space-between"] {
+      align-content: space-between;
+    }
+    .container[data-id="align-content-space-around"] {
+      align-content: space-around;
+    }
+    /** align-self **/
+    .container[data-id="align-self"] {
+      align-items: flex-start;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- flex-direction -->
+    <div class="container" data-id="flex-direction-row" data-item-inject-num="10"></div>
+    <div class="container" data-id="flex-direction-row-reverse" data-item-inject-num="10"></div>
+    <div class="container" data-id="flex-direction-column" data-item-inject-num="10"></div>
+    <div class="container" data-id="flex-direction-column-reverse" data-item-inject-num="10"></div>
+    <!-- flex-wrap -->
+    <div class="container" data-id="flex-wrap-nowrap" data-item-inject-num="70"></div>
+    <div class="container" data-id="flex-wrap-wrap" data-item-inject-num="70"></div>
+    <div class="container" data-id="flex-wrap-wrap-reverse" data-item-inject-num="70"></div>
+    <!-- justify-content -->
+    <div class="container" data-id="justify-content-flex-start" data-item-inject-num="5"></div>
+    <div class="container" data-id="justify-content-flex-end" data-item-inject-num="5"></div>
+    <div class="container" data-id="justify-content-center" data-item-inject-num="5"></div>
+    <div class="container" data-id="justify-content-space-between" data-item-inject-num="5"></div>
+    <div class="container" data-id="justify-content-space-around" data-item-inject-num="5"></div>
+    <!-- align-items -->
+    <div class="container" data-id="align-items-flex-start">
+      <div class="box no-margin-bottom" style="height: 50px;line-height:50px;">1</div>
+      <div class="box no-margin-bottom" style="height: 30px;line-height:30px;">2</div>
+      <div class="box no-margin-bottom" style="height: 20px;line-height:20px;">3</div>
+      <div class="box no-margin-bottom" style="height: 80px;line-height:80px;">4</div>
+    </div>
+    <div class="container" data-id="align-items-flex-end">
+      <div class="box no-margin-bottom" style="height: 50px;line-height:50px;">1</div>
+      <div class="box no-margin-bottom" style="height: 30px;line-height:30px;">2</div>
+      <div class="box no-margin-bottom" style="height: 20px;line-height:20px;">3</div>
+      <div class="box no-margin-bottom" style="height: 80px;line-height:80px;">4</div>
+    </div>
+    <div class="container" data-id="align-items-center">
+      <div class="box no-margin-bottom" style="height: 50px;line-height:50px;">1</div>
+      <div class="box no-margin-bottom" style="height: 30px;line-height:30px;">2</div>
+      <div class="box no-margin-bottom" style="height: 20px;line-height:20px;">3</div>
+      <div class="box no-margin-bottom" style="height: 80px;line-height:80px;">4</div>
+    </div>
+    <div class="container" data-id="align-items-baseline">
+      <p class="box no-margin-bottom" style="height: 50px;line-height:80px;">1</p>
+      <p class="box no-margin-bottom" style="height: 30px;line-height:20px;">2</p>
+      <p class="box no-margin-bottom" style="height: 20px;line-height:20px;">3</p>
+      <p class="box no-margin-bottom" style="height: 80px;line-height:110px;">4</p>
+    </div>
+    <div class="container" data-id="align-items-stretch">
+      <div class="box no-margin-bottom" style="height: 50px;line-height:50px;">1</div>
+      <div class="box no-margin-bottom" style="height: 30px;line-height:30px;">2</div>
+      <div class="box no-margin-bottom" style="height: auto;">3</div>
+      <div class="box no-margin-bottom">4</div>
+    </div>
+    <!-- align-content -->
+    <div class="container" data-id="align-content-flex-start" data-item-inject-num="10"></div>
+    <div class="container" data-id="align-content-flex-end" data-item-inject-num="10"></div>
+    <div class="container" data-id="align-content-center" data-item-inject-num="10"></div>
+    <div class="container" data-id="align-content-stretch" data-item-inject-num="10"></div>
+    <div class="container" data-id="align-content-space-between" data-item-inject-num="10"></div>
+    <div class="container" data-id="align-content-space-around" data-item-inject-num="10"></div>
+    <!-- order -->
+    <div class="container" data-id="order">
+      <div class="box" style="order:1">1</div>
+      <div class="box" style="order:6">2</div>
+      <div class="box" style="order:2">3</div>
+      <div class="box" style="order:7">4</div>
+      <div class="box" style="order:3">5</div>
+      <div class="box" style="order:8">6</div>
+      <div class="box" style="order:4">7</div>
+      <div class="box" style="order:9">8</div>
+      <div class="box" style="order:5">9</div>
+      <div class="box" style="order:10">10</div>
+    </div>
+    <!-- flex-grow -->
+    <div class="container" data-id="flex-grow">
+      <div class="box">1</div>
+      <div class="box" style="flex-grow:2">2</div>
+      <div class="box" style="flex-grow:2">3</div>
+      <div class="box" style="flex-grow:4">4</div>
+      <div class="box" style="flex-grow:6">5</div>
+    </div>
+    <!-- flex-shrink -->
+    <div class="container" data-id="flex-shrink" style="width: 500px;">
+      <div class="box" style="width: 170px;">1</div>
+      <div class="box" style="width: 170px;flex-shrink:2">2</div>
+      <div class="box" style="width: 170px;flex-shrink:2">3</div>
+      <div class="box" style="width: 170px;flex-shrink:4">4</div>
+      <div class="box" style="width: 170px;flex-shrink:4">5</div>
+    </div>
+    <!-- align-self -->
+    <div class="container" data-id="align-self" style="width: 500px;height: 200px;">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box" style="align-self: flex-end;">3</div>
+      <div class="box">4</div>
+      <div class="box">5</div>
+    </div>
+  </div>
+</body>
+<script>
+  function injectItems () {
+    var containerList = $('.container[data-item-inject-num]'),
+      itemHtml = '<div class="box">_index_</div>'
+    $.each(containerList, function (idx) {
+      let injectNum = $(this).data('item-inject-num')
+      let injectHtml = (new Array(injectNum)).join(',').split(',').map((item, idx) => {
+        return itemHtml.replace('_index_', (idx + 1))
+      }).join('')
+      $(this).append(injectHtml)
+    })
+  }
+  function showContainer () {
+    function getCurPageId () {
+      let result = null
+      let hrefParams = location.href.split('?')
+      if (hrefParams.length === 2) {
+        let tArr = hrefParams.pop().split('=')
+        if (tArr.length === 2 && tArr[0] == 'id') {
+          result = tArr[1]
+        }
+      }
+      return result
+    }
+    let curPageId = getCurPageId()
+    if (curPageId) {
+      $('.container[data-id="' + curPageId +'"]').css('display', 'flex');
+    }
+  }
+  function injectCssPropetryWaterMark () {
+    $.each($('.container'), function () {
+      let cssAttr = $(this).data('id')
+      if (cssAttr) {
+        $(this).append('<div class="css-water-mark">' + cssAttr + '</div>')
+      }
+    })
+  }
+  $(function() {
+    injectItems();
+    injectCssPropetryWaterMark();
+    showContainer();
+  })
+</script>
+</html>
