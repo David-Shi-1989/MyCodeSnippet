@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="../../../assets/vendor/jquery.min.js"></script>
+  <script type="text/javascript" src="../../../assets/vendor/lodash/lodash.min.4.17.21.js"></script>
+  <link rel="stylesheet" type="text/css" href="./style.css"></link>
+  <title>Debounce</title>
+</head>
+
+<body>
+  <div id="app">
+    <header id="header">Header</header>
+    <main id="main">
+      <div>
+        <div class="input-col">
+          <div>
+            <input type="text" placeholder="search for country" class="search-input" id="countrySearch">
+            <div class="api-counter" id="countrySearchLog"></div>
+          </div>
+          <div>
+            <input type="text" placeholder="search for country with debounce" class="search-input" id="countrySearchDebounce">
+            <div class="api-counter" id="countrySearchDebounceLog"></div>
+          </div>
+        </div>
+        <div id="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Country Name(CN)</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    <footer>Footer</footer>
+  </div>
+</body>
+<script>
+  var countryList = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla",
+    "Antigua", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas",
+    "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda",
+    "Bhutan", "Bolivia", "Bonaire", "Bosniahercegovina", "Botswana", "Brazil", "Brunei", "Bulgaria",
+    "Burkinafaso", "Burundi", "Cambodia(Kampuchea)", "Cameroon", "Canada", "Canary Islands", "Cape Verde",
+    "Caymanislands", "CÃ´te d'Ivoire", "Central African Republ", "Chad", "Chile", "China", "Colombia", "Comoros",
+    "Congo", "Congo, The Democratic", "Cook Islands", "Costa Rica", "Croatia", "Cuba", "Curacao", "Cyprus",
+    "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador",
+    "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falklandislands",
+    "Faroe Islands", "Fiji", "Finland", "France", "Frenchguiana", "Gabon", "Gambia", "Georgia", "Germany",
+    "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey",
+    "Guinea Republic", "Guinea-Bissau", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia",
+    "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jersey Island", "Jordan", "Kazakhstan",
+    "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia",
+    "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, Republic Of",
+    "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshallislands", "Martinique",
+    "Mauritania", "Mauritius", "Mayotte", "Mexico", "Moldova Republic Of ", "Mongolia", "Montenegro",
+    "Monteserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru Republic Of", "Nepal",
+    "Netherlands", "Nevis", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue",
+    "North Korea", "Norway", "Oman", "Pakistan", "Panama", "Papua New Guinea", "Paraguay", "Peru ",
+    "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion Island Of", "Romania",
+    "Russian Federation", "Rwanda", "Saipan", "Samoa", "San Marino", "Sano Tome&Principe",
+    "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia",
+    "Slovenia", "Soloman Islands", "Somalia", "Somaliland Republic Of", "South Africa", "South Korea",
+    "Spain", "Sri Lanka", "Ssamoa", "St. Barthelemy", "St.Eustatius", "St.Kitts", "St.Lucia",
+    "St.Maarten", "St.Vincent", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syrian",
+    "Tahiti", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad & Tobago",
+    "Tunisia", "Turkey", "Turks&Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates",
+    "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela",
+    "Vietnam", "Virgin Islands(British", "Virgin Islands(U.S)", "Yemen", "Zambia", "Zimbabwe"];
+  function appendTableData() {
+    var tbody = document.getElementById('tbody')
+    for (let i = 0; i < countryList.length; i++) {
+      let item = countryList[i]
+      let tr = document.createElement('tr')
+      let td1 = document.createElement('td')
+      td1.innerText = (i + 1)
+      let td2 = document.createElement('td')
+      td2.innerText = item
+      tr.append(td1)
+      tr.append(td2)
+      tbody.append(tr)
+    }
+  }
+  function doFilter (queryStr) {
+    var list = document.querySelectorAll('table tbody > tr');
+    var isShowAll = !queryStr;
+    for (let i = 0; i < list.length; i++) {
+      let tr = list[i]
+      let countryName = tr.querySelector('td:nth-child(2)').innerText.toLowerCase()
+      if (isShowAll || countryName.indexOf(queryStr.toLowerCase()) > -1) {
+        tr.style.display = 'table-row'
+      } else {
+        tr.style.display = 'none'
+      }
+    }
+  }
+  function onInputChange () {
+    var queryStr = this.value;
+    if (this.queryStr != queryStr) {
+      doFilter(queryStr);
+      this.queryStr = queryStr;
+    }
+  }
+  function addLog (el, queryStr) {
+    if (el) {
+      var p = document.createElement('p')
+      p.innerText = queryStr + (' Timestamp:' + Date.now())
+      el.append(p)
+      el.scroll(0, 100000)
+    }
+  }
+  window.onload = function () {
+    window.onscroll = _.debounce(function (e) {
+      var e = e || window.event;
+      var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+      var header = document.getElementById('header');
+      header.style.position = scrolltop > 60 ? 'fixed' : 'relative'
+      header.style.top = 0
+      document.getElementById("main").style.marginTop = scrolltop ? '60px' : 0
+    }, 300);
+    appendTableData();
+
+    document.getElementById('countrySearch').onkeyup = function () {
+      onInputChange.call(this)
+      addLog(document.getElementById('countrySearchLog'), this.value)
+    }
+    document.getElementById('countrySearchDebounce').onkeyup = _.debounce(function () {
+      onInputChange.call(this)
+      addLog(document.getElementById('countrySearchDebounceLog'), this.value)
+    }, 400)
+    $("input.search-input").focus(function () {
+      $("input.search-input").val("")
+      doFilter()
+    })
+  }
+</script>
+
+</html>

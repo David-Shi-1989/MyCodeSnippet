@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="../../../assets/vendor/lodash/lodash.min.4.17.21.js"></script>
+  <link rel="stylesheet" type="text/css" href="./style.css"></link>
+  <title>Throttle 节流</title>
+  <style>
+    body {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <button id="btn">Submit Form</button>
+  <button id="btnTh">Submit Form With throttle</button>
+  <div class="api-counter" id="logger" style="margin-top: 20px;"></div>
+</body>
+<script>
+  function addLog () {
+    var p = document.createElement('p')
+    p.innerText = 'cal api to submit'
+    document.getElementById('logger').append(p)
+  }
+  document.getElementById('btn').onclick = function () {
+    addLog()
+  }
+  document.getElementById('btnTh').onclick = _.throttle(function () {
+    addLog()
+  }, 4000)
+</script>
+</html>
