@@ -15,6 +15,7 @@
 * [JavaScipt记录](./js/README.md)
   * [代码片段](./js/code-snippets.md)
   * [正则表达式断言](./js/regex-assertions.md)
+  * [debounce和throttle](./js/debounce-throttle.md)
   
 * [CSS & SASS & LESS记录](./less-sass/README.md)
   * [SCSS变量转义](./less-sass/variable-trans.md)

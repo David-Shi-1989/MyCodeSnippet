@@ -16,18 +16,22 @@
 <body>
   <button id="btn">Submit Form</button>
   <button id="btnTh">Submit Form With throttle</button>
+  <button id="btnDe">Submit Form With debounce</button>
   <div class="api-counter" id="logger" style="margin-top: 20px;"></div>
 </body>
 <script>
   function addLog () {
     var p = document.createElement('p')
-    p.innerText = 'cal api to submit'
+    p.innerText = 'cal api to submit.Timestamp:' + (Date.now())
     document.getElementById('logger').append(p)
   }
   document.getElementById('btn').onclick = function () {
     addLog()
   }
   document.getElementById('btnTh').onclick = _.throttle(function () {
+    addLog()
+  }, 4000)
+  document.getElementById('btnDe').onclick = _.debounce(function () {
     addLog()
   }, 4000)
 </script>
