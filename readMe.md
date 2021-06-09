@@ -8,11 +8,19 @@
     源码文件夹，主要通过html，增强交互。如需查看源码，可通过F12打开查看。
 
 ## DemoList ##
+ - [抽签分配队伍程序](https://david-shi-1989.github.io/MyCodeSnippet/src/component/draw-lots/index.html)
+   
+    平时足球或者其他体育活动需要随机分配队伍时，可以用此小程序快速分组。更新时间：2021/6/9
+    
+ - [debounce throttle](https://david-shi-1989.github.io/MyCodeSnippet/gitbook/dist/js/debounce-throttle.html)
+   
+    2个实例demo禅师防抖和节流。更新时间：2021/5/14
+    
  - [sticky table head](https://david-shi-1989.github.io/MyCodeSnippet/src/component/css-position-sticky/index.html)
    
     `src\component\css-position-sticky\index.html`
     
-    使用`position:sticky`纯css实现表格吸顶效果。更新时间：2020/5/6
+    使用`position:sticky`纯css实现表格吸顶效果。更新时间：2021/5/6
 
  - [PortRange Check](https://david-shi-1989.github.io/MyCodeSnippet/src/algorithm/port-check/index.html)
    
