@@ -84,7 +84,7 @@
 
    流程图如下：
 
-   ​	![Untitled Diagram (1)](https://raw.githubusercontent.com/David-Shi-1989/img-bed/master/Untitled Diagram (1).png)
+   ​	![throttle-lct](https://raw.githubusercontent.com/David-Shi-1989/img-bed/master/throttle-lct.png)
 
    - 假如我们一直连续不断的快速点击中间节流按钮，`throttle`的效果就是：第一次立马执行，后面平均每4s执行1次。
 
@@ -97,7 +97,7 @@
 
    请看其流程图：
 
-   ![Untitled Diagram (2)](https://raw.githubusercontent.com/David-Shi-1989/img-bed/master/Untitled Diagram (2).png)
+   ![debounce-lct](https://raw.githubusercontent.com/David-Shi-1989/img-bed/master/debounce-lct.png)
 
 ## Code
 

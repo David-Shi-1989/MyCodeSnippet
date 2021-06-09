@@ -21,3 +21,18 @@
     return baseStr.split(targetStr).filter(i => i.trim().length > 0).length
   }
   ```
+
+## 产生随机数
+
+```javascript
+function getRandom (min = 0, max = 10) {
+  var dis = max - min;
+  return Math.floor(Math.random() * (dis + 1)) + min;
+}
+```
+
+## 产生随机字符串
+
+```
+```
+
