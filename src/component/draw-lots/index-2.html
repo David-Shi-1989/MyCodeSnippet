@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Draw Lots</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+    #app {
+      height: 100%;
+      overflow: hidden;
+      background-image: radial-gradient(#c75a41, #990b04);
+      -webkit-background-image: radial-gradient(#c75a41, #990b04);
+    }
+    .form{
+      width: 70%;
+      margin: 100px auto;
+      color: #fff;
+    }
+    .form div.form-item {
+      margin-bottom: 10px;
+      display: flex;
+    }
+    .form div.form-item label {
+      font-size: 14px;
+      margin-right: 5px;
+      flex: 0 0 80px;
+    }
+    .form div.form-item input {
+      flex: 1 1 100%;
+      border-radius: 5px;
+      outline: none;
+      border: 0;
+      padding: 5px 10px;
+    }
+    .form div.btn-wrap {
+      display: flex;
+    }
+    .form div.btn-wrap > button {
+      flex: 1 1 50%;
+      line-height: 24px;
+    }
+    .form div.btn-wrap > button:first-child {
+      margin-right: 10px;
+    }
+    .form div.btn-wrap > button:last-child {
+      margin-left: 10px;
+    }
+    .btn {
+      border-radius: 5px;
+      padding: 15px 25px;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      overflow: hidden;
+      text-align: center;
+      text-decoration: none;
+      outline: none;
+      border: 0;
+    }
+    .btn.btn-primary {
+      background-color: #07c160;
+      color:#fff;
+    }
+    .btn.btn-reset {
+      background-color: #F8F8F8;
+      color: #000;
+    }
+    .btn.btn-begin {
+      background-color: #0E71EB;
+      color: #fff;
+    }
+    .result {
+      width: 70%;
+      margin: 0 auto;
+      background-color: rgba(0,0,0,0.3);
+      border-radius: 5px;
+      padding: 10px;
+      color: #f2f2f2;
+    }
+    .result .statistic {
+      font-size: 13px;
+    }
+    .result .statistic > div > span:first-child {
+      font-weight: bolder;
+      display: inline-block;
+      width: 80px;
+    }
+    .result .current-assign {
+      text-align: center;
+      padding: 10px 0;
+    }
+    .result .current-assign > span {
+      display: inline-block;
+      background-color: rgba(255,255,255,.3);
+      font-size: 60px;
+      padding: 20px 15px;
+      border-radius: 10px;
+    }
+    .result ul {
+      list-style: none;
+      font-size: 13px;
+      margin-top: 15px;
+    }
+    .result ul > li {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 5px;
+      align-items: center;
+    }
+    .result ul > li > span.team-name {
+      margin-right: 10px;
+    }
+    .result ul > li span.cart {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      line-height: 16px;
+      border-radius: 3px;
+      margin-right: 5px;
+      font-size: 12px;
+      text-align: center;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .result ul > li:first-child span.cart {
+      background-color: #d1443d;
+    }
+    .result ul > li:nth-child(2) span.cart {
+      background-color: #4ac43f;
+    }
+    .result ul > li:nth-child(3) span.cart {
+      background-color: #e4d22f;
+    }
+    .style4 a {
+        position: relative;
+        color: rgba(255,255,255,1);
+        text-decoration: none;
+        background-color: rgba(219,87,5,1);
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 700;
+        font-size: 3em;
+        display: block;
+        padding: 4px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        -webkit-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+        -moz-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+        box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+        margin: 20px auto;
+        width: 160px;
+        text-align: center;
+        
+        -webkit-transition: all .1s ease;
+        -moz-transition: all .1s ease;
+        -ms-transition: all .1s ease;
+        -o-transition: all .1s ease;
+        transition: all .1s ease;
+    }
+    .style4 a:active {
+        -webkit-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+        -moz-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+        box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+        position: relative;
+        top: 6px;
+    }	
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="form">
+      <div class="form-item">
+        <label>队伍数量</label>
+        <input type="number" id="teamCount" value="2">
+      </div>
+      <div class="form-item">
+        <label>每队人数</label>
+        <input type="number" id="playerPerTeam" value="5">
+      </div>
+      <div class="btn-wrap">
+        <button role="button" class="btn btn-reset" id="restBtn">重置</button>
+        <button role="button" class="btn btn-primary" id="beginBtn" onclick="onBenginBtnClick()">开始</button>
+      </div>
+    </div>
+    <div class="result">
+      <div class="area style4">
+        <a href="javascript:void(0);" id="okBtn" onclick="onOkBtnClick()">抽签</a>
+      </div>
+      <!-- <button role="button" class="btn btn-begin" id="okBtn" onclick="onOkBtnClick()" style="width: 100%;margin-bottom:10px;">抽签</button> -->
+      <div class="statistic">
+        <div><span>当前序号</span><span id="curIndex">0</span>/ <span id="totalCount">10</span></div>
+      </div>
+      <div class="current-assign">
+        <span id="currentAssignNum">-</span>
+      </div>
+      <ul id="teamListUl">
+        <!-- <li data-id="1">
+          <span class="team-name">队伍1</span><span class="cart"></span><span class="cart"></span>
+        </li>
+        <li data-id="2">
+          <span class="team-name">队伍2</span><span class="cart"></span><span class="cart"></span>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</body>
+<script>
+  // config
+  var statusEnum = {
+    ing: 1,
+    not_begin: 0
+  }
+  var config = {
+    teamCount: 2,
+    playerCountPerTeam: 5,
+    curIndex: 0,
+    curStatus: statusEnum.not_begin,
+    wait_team: [],
+    finish_team: []
+  }
+  function getRandom (min = 0, max = 10) {
+    var dis = max - min;
+    return Math.floor(Math.random() * (dis + 1)) + min;
+  }
+  function getInputValue (id) {
+    return parseInt(document.getElementById(id).value)
+  }
+  function getTeamCount () {
+    return getInputValue("teamCount")
+  }
+  function getPlayerCountPerTeam () {
+    return getInputValue("playerPerTeam")
+  }
+  function getSumPlayerCount () {
+    return getTeamCount() * getPlayerCountPerTeam()
+  }
+  function onNewAssign (teamNum) {
+    updateCurIndex()
+    updateCurAssignNum(teamNum)
+    rangeTeamList()
+  }
+  function updateCurAssignNum (num) {
+    document.getElementById("currentAssignNum").innerText = num
+    config.wait_team.some(t => {
+      if (t.value === num) {
+        t.list.push(config.curIndex)
+        return true
+      }
+      return false
+    })
+  }
+  function updateCurIndex () {
+    config.curIndex++
+    document.getElementById("curIndex").innerText = config.curIndex
+  }
+  function teamBlockRenader (teamNum, idx) {}
+  function rangeTeamList () {
+    let unfinishedList = config.wait_team.filter(i => i.list.length < getPlayerCountPerTeam()),
+      finishedList = config.wait_team.filter(i => i.list.length >= getPlayerCountPerTeam())
+    config.wait_team = unfinishedList
+    config.finish_team.push(...finishedList)
+    // UI render
+    let teamList = [...config.wait_team, ...config.finish_team]
+    for (let i = 0; i < teamList.length; i++) {
+      let curTeam = teamList[i]
+      const teamNum = curTeam.value
+      var li = document.querySelectorAll(".result ul > li[data-id='" + teamNum + "']")
+      if (li && li.length === 1) {
+        li = li[0]
+        renderLiBlock(li, curTeam.list)
+      }
+    }
+  }
+  function renderLiBlock (el, list) {
+    let htmlArr = el.innerHTML.trim().split('</span>')
+    let html = (htmlArr[0] + '</span>')
+    for (let i = 0; i < list.length; i++) {
+      let num = list[i]
+      html += `<span class="cart">${num}</span>`
+    }
+    el.innerHTML = html
+  }
+  // events
+  function onBenginBtnClick () {
+    let wait_team = [], teamCount = getTeamCount(),playerCountPerTeam = getPlayerCountPerTeam()
+    for (let i = 0; i < teamCount; i++) {
+      wait_team.push({
+        value: (i + 1),
+        list: []
+      })
+    }
+    Object.assign(config, {
+      teamCount,
+      playerCountPerTeam,
+      curIndex: 0,
+      curStatus: statusEnum.ing,
+      wait_team,
+      finish_team: []
+    })
+    document.getElementById("curIndex").innerText = config.curIndex
+    document.getElementById("totalCount").innerText = teamCount * playerCountPerTeam
+    document.getElementById("currentAssignNum").innerText = '-'
+    // TODO 队伍数为3时,初始化UI
+    let html = ''
+    for (let i = 0; i < teamCount; i++) {
+      html += `<li data-id="${i + 1}"><span class="team-name">队伍${i + 1}</span></li>`
+    }
+    document.getElementById("teamListUl").innerHTML = html
+  }
+  function onOkBtnClick () {
+    // check if finished
+    if (config.curIndex < getSumPlayerCount() && config.wait_team.length > 0) {
+      const waitCount = config.wait_team.length
+      const curRandom = getRandom()
+      const curTeamNumber = config.wait_team[(curRandom % waitCount)].value
+      onNewAssign(curTeamNumber)
+    } else {
+      alert('分配已结束')
+    }
+  }
+</script>
+</html>
