@@ -14,8 +14,6 @@
 
 ### `debounce`
 
-<iframe src="https://david-shi-1989.github.io/MyCodeSnippet/src/component/debounce-throttle/debounce.html" border=0 frameborder=0 style="width:100%;height: 800px;"></iframe>
-
 #### 功能
 
 此demo模拟输入框搜索功能，右侧表格显示搜索的结果。
@@ -30,15 +28,17 @@
 
    黑色日志框只打出了1条log，即调用了1次查询接口。
 
+#### 操作2
+
+1. 滚动条滚动，发现header会固定在顶部（虽然有些延迟）。
+
+<iframe src="https://david-shi-1989.github.io/MyCodeSnippet/src/component/debounce-throttle/debounce.html" border=0 frameborder=0 style="width:100%;height: 800px;"></iframe>
+
 #### 总结1
 
 - 代码中`debounce`的延迟时间设置为400，即400ms，0.4s。
 - 我们的思想是待用户输入完后，或者是输入完一段后，我们才开始查询，而不是每输入完一个字符就开始查询。
 - 这0.4s就是我们等待的时间，即当用户输入完后0.4内没有输入了，我们就认为用户结束输入，查询开始；反之，则在下个输入完后继续等0.4s（0.4s也是经验值，可以修改为你认为合适的阈值）。
-
-#### 操作2
-
-1. 滚动条滚动，发现header会固定在顶部（虽然有些延迟）。
 
 #### 总结2
 
@@ -47,8 +47,6 @@
 - `onscroll`才是防抖动的经典场景，在短时间内出发多次。
 
 ### `throttle`
-
-<iframe src="https://david-shi-1989.github.io/MyCodeSnippet/src/component/debounce-throttle/throttle.html" border=0 frameborder=0 style="width:100%;height: 400px;"></iframe>
 
 #### 功能
 
@@ -63,10 +61,12 @@
 2. 连续点击中间按钮（Submit Form With throttle）3次（等待大约5s）。
 
    底部会打出2条记录。第一条马上出现，第二条过了4s后出现。
-   
+
 3. 连续点击右侧按钮（Submit Form With debounce）3次
 
    底部打出1条记录，且是在停止点击后约4s。
+
+<iframe src="https://david-shi-1989.github.io/MyCodeSnippet/src/component/debounce-throttle/throttle.html" border=0 frameborder=0 style="width:100%;height: 400px;"></iframe>
 
 #### 结论
 
@@ -84,7 +84,7 @@
 
    流程图如下：
 
-   ​	![Untitled Diagram (1)](https://raw.githubusercontent.com/David-Shi-1989/img-bed/master/Untitled Diagram (1).png)
+   ​	![throttle-lct](https://raw.githubusercontent.com/David-Shi-1989/img-bed/master/throttle-lct.png)
 
    - 假如我们一直连续不断的快速点击中间节流按钮，`throttle`的效果就是：第一次立马执行，后面平均每4s执行1次。
 
@@ -97,7 +97,7 @@
 
    请看其流程图：
 
-   ![Untitled Diagram (2)](https://raw.githubusercontent.com/David-Shi-1989/img-bed/master/Untitled Diagram (2).png)
+   ![debounce-lct](https://raw.githubusercontent.com/David-Shi-1989/img-bed/master/debounce-lct.png)
 
 ## Code
 

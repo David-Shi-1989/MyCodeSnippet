@@ -14,7 +14,7 @@
     
  - [debounce throttle](https://david-shi-1989.github.io/MyCodeSnippet/gitbook/dist/js/debounce-throttle.html)
    
-    2个实例demo禅师防抖和节流。更新时间：2021/5/14
+    2个实例demo完美阐释防抖和节流。更新时间：2021/5/14
     
  - [sticky table head](https://david-shi-1989.github.io/MyCodeSnippet/src/component/css-position-sticky/index.html)
    

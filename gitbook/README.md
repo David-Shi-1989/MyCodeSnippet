@@ -4,6 +4,7 @@
 
 本人岗位为前端开发，主要技术栈：
 
-- VueJs
-- Webpack
-- NodeJS
+- `VueJs`
+- `Webpack`
+- `NodeJS`
+

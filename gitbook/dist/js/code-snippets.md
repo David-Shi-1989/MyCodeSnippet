@@ -26,7 +26,7 @@
 
 ```javascript
 function getRandom (min = 0, max = 10) {
-  var dis = max -min;
+  var dis = max - min;
   return Math.floor(Math.random() * (dis + 1)) + min;
 }
 ```
