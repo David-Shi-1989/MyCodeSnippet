@@ -24,4 +24,14 @@ width: calc(100% - #{$container-width});
 
 ## LESS
 
-`LESS`不存在这个问题，可以直接用。
+```less
+@count-per-row: 5;
+ul {
+  & > li {
+      &:not(:nth-child(@{count-per-row}n)) {
+          margin-right: 10px;
+      }
+  }
+}
+```
+
