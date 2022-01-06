@@ -28,7 +28,7 @@
 
 #### 表单数据
 
-因为是混合表单速据，所以**不能**和简单的表单一样放在对象中。应统一放在`FormData`对象里：
+因为是混合表单数据，所以**不能**和简单的表单一样放在对象中。应统一放在`FormData`对象里：
 
 ```javascript
 let formData = new FormData()
@@ -60,7 +60,7 @@ const upload = multer({
       cb(null, path.join(__dirname, '../../../static/demo'))
     },
     filename (req, file, cb) {
-      const fileName = utils.formatDate(new Date(), 'yyyy-MM-dd_hh-mm-ss') + ' - ' + file.originalname
+      const fileName = 'file_name_prefix' + ' - ' + file.originalname
       cb(null, fileName)
     }
   })
@@ -79,4 +79,4 @@ app.post('/api/form', upload.single('imgFieldName'),async function (req, res) {
 ## 参考资料
 
 1. [《`vue-picture-cropper` github》](https://github.com/chengpeiquan/vue-picture-cropper)
-2. 《`multer` github》(https://github.com/expressjs/multer)
+2. [《`multer` github》](https://github.com/expressjs/multer)
